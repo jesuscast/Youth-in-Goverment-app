@@ -14,6 +14,15 @@
 		FAF7C45D1BD48E38002B5285 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF7C45B1BD48E38002B5285 /* LaunchScreen.storyboard */; };
 		FAF7C4681BD48E39002B5285 /* yigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4671BD48E39002B5285 /* yigTests.swift */; };
 		FAF7C4731BD48E39002B5285 /* yigUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4721BD48E39002B5285 /* yigUITests.swift */; };
+		FAF7C4811BD48E75002B5285 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4801BD48E75002B5285 /* MapViewController.swift */; };
+		FAF7C4831BD48E87002B5285 /* DocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4821BD48E87002B5285 /* DocketViewController.swift */; };
+		FAF7C4851BD48E95002B5285 /* BillUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4841BD48E95002B5285 /* BillUpdatesViewController.swift */; };
+		FAF7C4871BD48EA4002B5285 /* ConferenceScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4861BD48EA4002B5285 /* ConferenceScheduleViewController.swift */; };
+		FAF7C4891BD48EB0002B5285 /* BusScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4881BD48EB0002B5285 /* BusScheduleViewController.swift */; };
+		FAF7C48B1BD48EBA002B5285 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C48A1BD48EBA002B5285 /* AnnouncementsViewController.swift */; };
+		FAF7C48D1BD48EC5002B5285 /* ResearchQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C48C1BD48EC5002B5285 /* ResearchQuestionsViewController.swift */; };
+		FAF7C48F1BD48ED3002B5285 /* StaffQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C48E1BD48ED3002B5285 /* StaffQuestionsViewController.swift */; };
+		FAF7C4911BD48EDF002B5285 /* CandidatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4901BD48EDF002B5285 /* CandidatesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,15 @@
 		FAF7C46E1BD48E39002B5285 /* yigUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yigUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF7C4721BD48E39002B5285 /* yigUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yigUITests.swift; sourceTree = "<group>"; };
 		FAF7C4741BD48E39002B5285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAF7C4801BD48E75002B5285 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		FAF7C4821BD48E87002B5285 /* DocketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocketViewController.swift; sourceTree = "<group>"; };
+		FAF7C4841BD48E95002B5285 /* BillUpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillUpdatesViewController.swift; sourceTree = "<group>"; };
+		FAF7C4861BD48EA4002B5285 /* ConferenceScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceScheduleViewController.swift; sourceTree = "<group>"; };
+		FAF7C4881BD48EB0002B5285 /* BusScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusScheduleViewController.swift; sourceTree = "<group>"; };
+		FAF7C48A1BD48EBA002B5285 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
+		FAF7C48C1BD48EC5002B5285 /* ResearchQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchQuestionsViewController.swift; sourceTree = "<group>"; };
+		FAF7C48E1BD48ED3002B5285 /* StaffQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffQuestionsViewController.swift; sourceTree = "<group>"; };
+		FAF7C4901BD48EDF002B5285 /* CandidatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidatesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +121,15 @@
 				FAF7C4591BD48E38002B5285 /* Assets.xcassets */,
 				FAF7C45B1BD48E38002B5285 /* LaunchScreen.storyboard */,
 				FAF7C45E1BD48E38002B5285 /* Info.plist */,
+				FAF7C4801BD48E75002B5285 /* MapViewController.swift */,
+				FAF7C4821BD48E87002B5285 /* DocketViewController.swift */,
+				FAF7C4841BD48E95002B5285 /* BillUpdatesViewController.swift */,
+				FAF7C4861BD48EA4002B5285 /* ConferenceScheduleViewController.swift */,
+				FAF7C4881BD48EB0002B5285 /* BusScheduleViewController.swift */,
+				FAF7C48A1BD48EBA002B5285 /* AnnouncementsViewController.swift */,
+				FAF7C48C1BD48EC5002B5285 /* ResearchQuestionsViewController.swift */,
+				FAF7C48E1BD48ED3002B5285 /* StaffQuestionsViewController.swift */,
+				FAF7C4901BD48EDF002B5285 /* CandidatesViewController.swift */,
 			);
 			path = yig;
 			sourceTree = "<group>";
@@ -257,7 +284,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF7C4551BD48E38002B5285 /* ViewController.swift in Sources */,
+				FAF7C4871BD48EA4002B5285 /* ConferenceScheduleViewController.swift in Sources */,
+				FAF7C4891BD48EB0002B5285 /* BusScheduleViewController.swift in Sources */,
+				FAF7C48D1BD48EC5002B5285 /* ResearchQuestionsViewController.swift in Sources */,
+				FAF7C48B1BD48EBA002B5285 /* AnnouncementsViewController.swift in Sources */,
+				FAF7C4811BD48E75002B5285 /* MapViewController.swift in Sources */,
+				FAF7C4831BD48E87002B5285 /* DocketViewController.swift in Sources */,
 				FAF7C4531BD48E38002B5285 /* AppDelegate.swift in Sources */,
+				FAF7C4911BD48EDF002B5285 /* CandidatesViewController.swift in Sources */,
+				FAF7C4851BD48E95002B5285 /* BillUpdatesViewController.swift in Sources */,
+				FAF7C48F1BD48ED3002B5285 /* StaffQuestionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

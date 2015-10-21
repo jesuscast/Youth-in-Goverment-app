@@ -10,29 +10,38 @@ import Foundation
 import Firebase
 
 class Backend {
+    enum Message {
+        case BillChanged
+        case SchoolChanged
+    }
+    enum Error {
+        case ConnectionError
+    }
     var firebaseConnection = Firebase(url:"https://yig-bill-tracker.firebaseio.com")
     // Read data and react to changes
     
     func registerListeners() {
     // Bill Updates
-        firebaseConnection.ChildByAppendingPath("bills").observeEventType(.Value, withBlock: {
+        firebaseConnection.childByAppendingPath("bills").observeEventType(.Value, withBlock: {
             snapshot in
-            changeInBill(snapshot)
-            println("\(snapshot.key) -> \(snapshot.value)")
+            self.changeInBill(snapshot)
+            print("\(snapshot.key) -> \(snapshot.value)")
         })
     // School Updates
-        firebaseConnection.ChildByAppendingPath("schooList").observeEventType(.Value, withBlock: {
+        firebaseConnection.childByAppendingPath("schooList").observeEventType(.Value, withBlock: {
             snapshot in
-            changeInSchool(snapshot)
-            println("\(snapshot.key) -> \(snapshot.value)")
+            self.changeInSchool(snapshot)
+            print("\(snapshot.key) -> \(snapshot.value)")
         })
     }
     
-    func changeInBill(allBills: NSDictionary) {
-    
+    func changeInBill(allBills: FDataSnapshot) {
+        self.onMessage!(.BillChanged)
     }
     
-    func changeInSchool(allSchools: NSDictionary) {
-    
+    func changeInSchool(allSchools: FDataSnapshot) {
+        self.onMessage!(.SchoolChanged)
     }
+    var onMessage: (Message -> Void)? = nil
+    var onError: (Error -> Void)? = nil
 }

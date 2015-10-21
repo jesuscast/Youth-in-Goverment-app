@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/Firebase.framework"
   install_framework "Pods/MagicPie.framework"
   install_framework "Pods/PureLayout.framework"
   install_framework "Pods/Starscream.framework"
@@ -92,6 +93,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/Firebase.framework"
   install_framework "Pods/MagicPie.framework"
   install_framework "Pods/PureLayout.framework"
   install_framework "Pods/Starscream.framework"

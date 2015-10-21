@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Firebase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MagicPie.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -36,6 +41,42 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>03BB2F25B353826A87F5929173E03E42</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B4CEC4FF439ACA1252182298ABC5329</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4B2F30D90D85A544E9EFE2A49D392C25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B7AC9326D819482593FE118E915409D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF0E4B5441F80BC64086E00438DB8C5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C880E038C26A7884D5E9BDDDF078E3CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DA8812B5380975A88ED25E92FF6FA440</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

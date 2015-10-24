@@ -38,11 +38,12 @@ func ==(a: StatesApp, b:StatesApp) -> Bool{
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var nav: UINavigationController
+    var nav: UINavigationController = UINavigationController()
     
+    @IBOutlet weak var options: UITableView!
     var backend: Backend? = nil
+   
     
-    var options = UITableView()
     var items: [String] = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates"]
     // var items: [String] = ["Viper", "X", "Games"]
     
@@ -51,11 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var screenWidth = CGFloat(0.0)
     
     var screenHeight = CGFloat(0.0)
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -68,11 +65,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Do something when an error is received.
         }
         // Set up the table view
-        options.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        options.delegate = self
-        options.dataSource = self
-        options.registerClass(UITableView.self, forCellReuseIdentifier: "cell")
-        self.view.addSubview(options)
+        options.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        // self.view.addSubview(options)
         
         //
         screenRect = UIScreen.mainScreen().bounds
@@ -93,10 +87,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+        let cell:UITableViewCell = options.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         
         cell.textLabel?.text = self.items[indexPath.row]
         

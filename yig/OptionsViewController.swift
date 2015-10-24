@@ -78,7 +78,6 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("You selected cell #\(indexPath.row)!")
         switch(indexPath.row) {
-            // var items: [String] = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates"]
         case 0:
             self.activateState(.Map)
         case 1:
@@ -110,6 +109,7 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         return cell
         
     }
+    
     func activateState(stateGoal: StatesApp) {
         var x: UIViewController = UIViewController()
         switch(stateGoal) {
@@ -122,15 +122,15 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         case .BillUpdates:
             x = BillUpdatesViewController()
         case .Bus:
-            x = ConferenceScheduleViewController()
-        case .Announcements:
             x = BusScheduleViewController()
-        case .Research:
+        case .Announcements:
             x = AnnouncementsViewController()
         case .Candidates:
             x = CandidatesViewController()
         case .StaffQuestions:
             x = StaffQuestionsViewController()
+        case .Research:
+            x = ResearchQuestionsViewController()
         case .Schedule:
             x = ConferenceScheduleViewController()
         }

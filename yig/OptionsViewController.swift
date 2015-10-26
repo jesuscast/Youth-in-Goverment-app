@@ -22,6 +22,7 @@ enum StatesApp:Equatable {
     case Options
     case Schedule
     case StaffQuestions
+    case Settings
 }
 
 func ==(a: StatesApp, b:StatesApp) -> Bool{
@@ -36,6 +37,7 @@ func ==(a: StatesApp, b:StatesApp) -> Bool{
     case (.Candidates, .Candidates): return true
     case (.Schedule, .Schedule): return true
     case (.StaffQuestions, .StaffQuestions): return true
+    case (.Settings, .Settings): return true
     default: return false
     }
 }
@@ -49,7 +51,9 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
     
     var screenHeight = CGFloat(0.0)
     
-    var items: [String] = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates"]
+    var backend = Backend()
+    
+    var items: [String] = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +65,11 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         screenHeight = screenRect.size.height
         //
         
-        options.frame         =   CGRectMake(0, 100, screenWidth, screenHeight-100);
+        options.frame         =   CGRectMake(0, 0, screenWidth, screenHeight);
         options.delegate      =   self
         options.dataSource    =   self
         options.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        backend.registerListeners()
         self.view.addSubview(options)
     }
     override func didReceiveMemoryWarning() {
@@ -96,10 +101,13 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
             self.activateState(.StaffQuestions)
         case 8:
             self.activateState(.Candidates)
+        case 9:
+            self.activateState(.Settings)
         default:
             NSLog("sd")
         }
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:UITableViewCell = options.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
@@ -133,6 +141,8 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
             x = ResearchQuestionsViewController()
         case .Schedule:
             x = ConferenceScheduleViewController()
+        case .Settings:
+            x = SettingsViewController()
         }
         self.navigationController?.pushViewController(x, animated: true)
     }

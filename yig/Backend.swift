@@ -24,23 +24,23 @@ class Backend {
     // Bill Updates
         firebaseConnection.childByAppendingPath("bills").observeEventType(.Value, withBlock: {
             snapshot in
-            self.changeInBill(snapshot)
             print("\(snapshot.key) -> \(snapshot.value)")
+            self.changeInBill(snapshot)
         })
     // School Updates
         firebaseConnection.childByAppendingPath("schooList").observeEventType(.Value, withBlock: {
             snapshot in
-            self.changeInSchool(snapshot)
             print("\(snapshot.key) -> \(snapshot.value)")
+            self.changeInSchool(snapshot)
         })
     }
     
     func changeInBill(allBills: FDataSnapshot) {
-        self.onMessage!(.BillChanged)
+        self.onMessage?(.BillChanged)
     }
     
     func changeInSchool(allSchools: FDataSnapshot) {
-        self.onMessage!(.SchoolChanged)
+        self.onMessage?(.SchoolChanged)
     }
     var onMessage: (Message -> Void)? = nil
     var onError: (Error -> Void)? = nil

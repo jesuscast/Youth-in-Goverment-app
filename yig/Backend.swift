@@ -10,38 +10,35 @@ import Foundation
 import Firebase
 
 class Backend {
-    enum Message {
-        case BillChanged
-        case SchoolChanged
-    }
+    
     enum Error {
         case ConnectionError
     }
+    
+    var options: [String : (FDataSnapshot -> Void)?] = [
+        "announcements" : nil,
+        "bills" : nil,
+        "busSchedule" : nil,
+        "candidates" : nil,
+        "conferenceSchedule" : nil,
+        "researchQuestions" : nil,
+        "schoolList" : nil,
+        "staffQuestions" : nil,
+        "users" : nil
+    ]
+    
     var firebaseConnection = Firebase(url:"https://yig-bill-tracker.firebaseio.com")
     // Read data and react to changes
     
     func registerListeners() {
-    // Bill Updates
-        firebaseConnection.childByAppendingPath("bills").observeEventType(.Value, withBlock: {
-            snapshot in
-            print("\(snapshot.key) -> \(snapshot.value)")
-            self.changeInBill(snapshot)
-        })
-    // School Updates
-        firebaseConnection.childByAppendingPath("schooList").observeEventType(.Value, withBlock: {
-            snapshot in
-            print("\(snapshot.key) -> \(snapshot.value)")
-            self.changeInSchool(snapshot)
-        })
+        for (key, value) in options {
+            firebaseConnection.childByAppendingPath(key).observeEventType(.Value, withBlock: {
+                snapshot in
+                //print("\(snapshot.key) -> \(snapshot.value)")
+                print("before receiving data")
+                value?(snapshot)
+            })
+        }
     }
-    
-    func changeInBill(allBills: FDataSnapshot) {
-        self.onMessage?(.BillChanged)
-    }
-    
-    func changeInSchool(allSchools: FDataSnapshot) {
-        self.onMessage?(.SchoolChanged)
-    }
-    var onMessage: (Message -> Void)? = nil
     var onError: (Error -> Void)? = nil
 }

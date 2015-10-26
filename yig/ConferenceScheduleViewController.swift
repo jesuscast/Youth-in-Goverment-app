@@ -30,7 +30,7 @@ class ConferenceScheduleViewController:UIViewController {
         screenWidth = screenRect.size.width
         screenHeight = screenRect.size.height
         //
-        options.view.frame         =   CGRectMake(0, 75, screenWidth, screenHeight);
+        options.view.frame         =   CGRectMake(0, 65, screenWidth, screenHeight);
         self.view.addSubview(options.view)
     }
     override func didReceiveMemoryWarning() {

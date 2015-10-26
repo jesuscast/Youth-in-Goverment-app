@@ -14,7 +14,7 @@ import CoreLocation
 class ViewController: UIViewController {
     var nav: UINavigationController = UINavigationController()
     
-    var backend: Backend? = nil
+  
    
     
     // var items: [String] = ["Viper", "X", "Games"]
@@ -29,13 +29,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Setup the backend.
-        backend = Backend()
-        backend!.onMessage = { msg in
-            //  Do something when a message is received
-        }
-        backend!.onError = { err in
-            // Do something when an error is received.
-        }
         // Set up the table view
         
         //

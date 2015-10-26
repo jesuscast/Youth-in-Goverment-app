@@ -14,12 +14,13 @@ class GroupedViewController: UITableViewController {
     var names = ["Tomato": [("origin","central amerca"), ("color","red")], "apple": [("origin","europe"), ("color","red")]]
     var firebaseData: [String: [ String : String ] ]? = nil
     var backend = Backend()
-    
+    var detailedDataMatchingNames: [ [ ( String , String ) ] ]? = nil
     // This define the structure of the view table with sections.
     struct Objects {
         
         var sectionName : String!
         var sectionObjects : [(String,String)]!
+        
     }
     
     struct firebaseElement {
@@ -28,7 +29,7 @@ class GroupedViewController: UITableViewController {
     }
     // An array of sections
     var objectArray = [Objects]()
-    
+    var detailedInformation:[ [   [(String,String)]   ] ] = [ [   [(String,String)]   ] ]()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,11 @@ class GroupedViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
+        print("\(detailedInformation[indexPath.section][indexPath.row])")
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return objectArray[section].sectionName
@@ -81,6 +87,7 @@ class GroupedViewController: UITableViewController {
                 }
             }
             var namesTemporary:[ String : [(String,String)] ] = [ String : [(String,String)] ]()
+            var detailedInformationCounter = 0
             for (key, value) in self.firebaseData! {
                 if key != "TEST" {
                     // Format the start day
@@ -106,8 +113,15 @@ class GroupedViewController: UITableViewController {
                     // Check if namesTemp Contains the specified day
                     if namesTemporary[dateStringStart] == nil {
                         namesTemporary[dateStringStart] = [(String,String)]()
+                        self.detailedInformation.append( [   [(String,String)]   ]()  )
+                        detailedInformationCounter += 1
                     }
                     namesTemporary[dateStringStart]?.append(("\(timeStringStart) - \(timeStringEnd)" , "\(self.firebaseData![key]!["eventName"]!)"))
+                    self.detailedInformation[detailedInformationCounter-1].append(  [(String,String)]()  )
+                    let countTemp = self.detailedInformation[detailedInformationCounter-1].count-1
+                    for (keyDetailed, valueDetailed) in self.firebaseData![key]! {
+                        self.detailedInformation[detailedInformationCounter-1][countTemp].append((keyDetailed, valueDetailed))
+                    }
                 }
             }
             self.names = namesTemporary

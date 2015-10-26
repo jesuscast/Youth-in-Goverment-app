@@ -84,7 +84,7 @@ class ConferenceScheduleViewController: UITableViewController {
         print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
         print("\(detailedInformation[indexPath.section][indexPath.row])")
         let vcc = ListTuplesViewController()
-        var eventTemp = [("",""),("",""),("",""),("",""),("",""),("",""),("","")]
+        var eventTemp = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
         for (keySelected, valueSelected) in detailedInformation[indexPath.section][indexPath.row] {
             var newKeyName = ""
             switch(keySelected) {
@@ -96,19 +96,22 @@ class ConferenceScheduleViewController: UITableViewController {
                 eventTemp[0] = (newKeyName, valueSelected)
             case "attire":
                 newKeyName = "Attire"
-                eventTemp[4] = (newKeyName, valueSelected)
+                eventTemp[6] = (newKeyName, valueSelected)
             case "locationName":
                 newKeyName = "Location"
-                eventTemp[2] = (newKeyName, valueSelected)
+                eventTemp[4] = (newKeyName, valueSelected)
             case "formattedStartTime":
                 newKeyName = "Start time"
-                eventTemp[5] = (newKeyName, valueSelected)
+                eventTemp[2] = (newKeyName, valueSelected)
             case "formattedEndTime":
                 newKeyName = "End time"
-                eventTemp[6] = (newKeyName, valueSelected)
+                eventTemp[3] = (newKeyName, valueSelected)
             case "locationAddress":
                 newKeyName = "Address"
-                eventTemp[3] = (newKeyName, valueSelected)
+                eventTemp[5] = (newKeyName, valueSelected)
+            case "description":
+                newKeyName = "Description"
+                eventTemp[7] = (newKeyName, valueSelected)
             default:
                 print("Ignore this information")
                 // eventTemp.append((keySelected,"Unknown"))

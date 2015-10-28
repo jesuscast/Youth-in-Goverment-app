@@ -11,3 +11,7 @@
 // #import "Pie.h"
 #import <MagicPie/MagicPieLayer.h>
 #import <Firebase/Firebase.h>
+//#import <JSQMessagesViewController/JSQMessages.h> 
+//#import <JSQSystemSoundPlayer/JSQSystemSoundPlayer.h>
+#import "JSQMessages.h"
+#import "JSQMessageData.h"

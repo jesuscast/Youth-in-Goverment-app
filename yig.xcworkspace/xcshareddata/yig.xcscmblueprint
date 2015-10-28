@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5ECEC7F976BBE7346159DCA43B5CB1628BAA7CCC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5ECEC7F976BBE7346159DCA43B5CB1628BAA7CCC" : 0,
+    "5C880BE1B99588B39156D68833EAB2407BF6A594" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BD38A820-0563-439E-84D5-A28A040BA9BB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5ECEC7F976BBE7346159DCA43B5CB1628BAA7CCC" : "yig\/",
+    "5C880BE1B99588B39156D68833EAB2407BF6A594" : "ios-swift-chat-example\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "yig",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "yig.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/firebase\/ios-swift-chat-example.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C880BE1B99588B39156D68833EAB2407BF6A594"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jesuscast\/Youth-in-Goverment-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5ECEC7F976BBE7346159DCA43B5CB1628BAA7CCC"
+    }
+  ]
+}

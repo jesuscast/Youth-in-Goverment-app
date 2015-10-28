@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B077EBAF9264E3E822FE5202'
+               BlueprintIdentifier = '2DBDAF6F9680767661F7D5C5'
                BlueprintName = 'MagicPie'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'MagicPie.framework'>

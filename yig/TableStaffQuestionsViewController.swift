@@ -73,12 +73,27 @@ class TableStaffQuestionsViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-        let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
-        // Configure the cell...
-        cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].1
-        cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
-        return cell
+        // Check if this is an answer or a question
+        if (indexPath.row % 2 == 0){
+            let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
+            // Configure the cell...
+            cell.textLabel?.text = "Q: \(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
+            cell.backgroundColor = UIColor(red:0.25, green:0.47, blue:0.20, alpha:1.0)
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
+            cell.detailTextLabel?.textColor = UIColor.whiteColor()
+            return cell
+        }
+        else {
+            let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
+            // Configure the cell...
+            cell.textLabel?.text = "A: \(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
+            cell.backgroundColor = UIColor(red:0.22, green:0.50, blue:0.87, alpha:1.0)
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
+            cell.detailTextLabel?.textColor = UIColor.whiteColor()
+            return cell
+        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

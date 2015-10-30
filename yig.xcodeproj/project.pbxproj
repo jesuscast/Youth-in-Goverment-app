@@ -61,6 +61,7 @@
 		FAB328C41BE036C7005F30F8 /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB328931BE036C6005F30F8 /* JSQMessagesTypingIndicatorFooterView.m */; };
 		FAB328C51BE036C7005F30F8 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB328941BE036C6005F30F8 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		FAB328CA1BE037CE005F30F8 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB328C91BE037CE005F30F8 /* JSQSystemSoundPlayer.m */; };
+		FADE109F1BE409180088C757 /* TableStaffQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE109E1BE409180088C757 /* TableStaffQuestionsViewController.swift */; };
 		FAEEE6211BDE36D7002C08EC /* ListTuplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEE6201BDE36D7002C08EC /* ListTuplesViewController.swift */; };
 		FAF7C4531BD48E38002B5285 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4521BD48E38002B5285 /* AppDelegate.swift */; };
 		FAF7C4551BD48E38002B5285 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4541BD48E38002B5285 /* ViewController.swift */; };
@@ -183,6 +184,7 @@
 		FAB328941BE036C6005F30F8 /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		FAB328C81BE037CE005F30F8 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		FAB328C91BE037CE005F30F8 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		FADE109E1BE409180088C757 /* TableStaffQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableStaffQuestionsViewController.swift; sourceTree = "<group>"; };
 		FAEEE6201BDE36D7002C08EC /* ListTuplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTuplesViewController.swift; sourceTree = "<group>"; };
 		FAF7C44F1BD48E38002B5285 /* yig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF7C4521BD48E38002B5285 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */,
 				FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */,
 				FAEEE6201BDE36D7002C08EC /* ListTuplesViewController.swift */,
+				FADE109E1BE409180088C757 /* TableStaffQuestionsViewController.swift */,
 			);
 			path = yig;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				FAB328AF1BE036C6005F30F8 /* JSQMessagesAvatarFactory.m in Sources */,
 				FAB328BE1BE036C7005F30F8 /* JSQMessagesInputToolbar.m in Sources */,
 				FAF7C4531BD48E38002B5285 /* AppDelegate.swift in Sources */,
+				FADE109F1BE409180088C757 /* TableStaffQuestionsViewController.swift in Sources */,
 				FAB328A71BE036C6005F30F8 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				FAB328B41BE036C6005F30F8 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				FAB328B01BE036C6005F30F8 /* JSQMessagesBubbleImageFactory.m in Sources */,

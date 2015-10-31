@@ -24,7 +24,8 @@ class Backend {
         "researchQuestions" : nil,
         "schoolList" : nil,
         "staffQuestions" : nil,
-        "users" : nil
+        "users" : nil,
+        
     ]
     
     var firebaseConnection = Firebase(url:"https://yig-bill-tracker.firebaseio.com")

@@ -35,7 +35,7 @@ class StaffQuestionsViewController:UIViewController {
         screenContainer.frame = CGRectMake(0, 65, screenWidth, screenHeight - 65)
         screenContainer.backgroundColor = UIColor.whiteColor()
         // Set up the textField to write responses
-        textField.frame = CGRect(x: screenContainer.frame.size.width*0.025, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.70, height: 70)
+        textField.frame = CGRect(x: screenContainer.frame.size.width*0.025, y: (screenContainer.frame.size.height-90), width: screenContainer.frame.size.width*0.70, height: 70)
         textField.text = "Jesus was here"
         textField.layer.borderColor = UIColor.grayColor().CGColor
         textField.layer.borderWidth = 2.0
@@ -43,7 +43,7 @@ class StaffQuestionsViewController:UIViewController {
         textField.clipsToBounds = true
         // Set up the send button
         // UIDevice.currentDevice().identifierForVendor!.UUIDString
-        sendButton.frame = CGRect(x: screenContainer.frame.size.width*0.75, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.20, height: 70)
+        sendButton.frame = CGRect(x: screenContainer.frame.size.width*0.75, y: (screenContainer.frame.size.height-90), width: screenContainer.frame.size.width*0.20, height: 70)
         sendButton.layer.borderColor = UIColor.grayColor().CGColor
         sendButton.layer.cornerRadius = 5
         sendButton.layer.borderWidth = 2.0

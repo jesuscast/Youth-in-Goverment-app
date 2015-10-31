@@ -43,6 +43,8 @@ class TableStaffQuestionsViewController: UITableViewController {
     // An array of sections
     var objectArray = [Objects]()
     var detailedInformation:[ [   [(String,String)]   ] ] = [ [   [(String,String)]   ] ]()
+    var namesTemporary:[ String : [(String,String)] ] = [ String : [(String,String)] ]()
+    var firebaseOrdered:[ [String:String] ] = [ [String:String] ]()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,10 +76,10 @@ class TableStaffQuestionsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Check if this is an answer or a question
-        if (indexPath.row % 2 == 0){
+        if (objectArray[indexPath.section].sectionObjects[indexPath.row].1.rangeOfString("Q: ") != nil){
             let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
             // Configure the cell...
-            cell.textLabel?.text = "Q: \(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
+            cell.textLabel?.text = "\(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
             cell.backgroundColor = UIColor(red:0.25, green:0.47, blue:0.20, alpha:1.0)
             cell.textLabel?.textColor = UIColor.whiteColor()
             cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
@@ -87,7 +89,7 @@ class TableStaffQuestionsViewController: UITableViewController {
         else {
             let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
             // Configure the cell...
-            cell.textLabel?.text = "A: \(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
+            cell.textLabel?.text = "\(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
             cell.backgroundColor = UIColor(red:0.22, green:0.50, blue:0.87, alpha:1.0)
             cell.textLabel?.textColor = UIColor.whiteColor()
             cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
@@ -102,8 +104,14 @@ class TableStaffQuestionsViewController: UITableViewController {
     }
     // MARK: - Callbacks from firebase
     func overrideFirebaseCallbacks() {
+
         backend.options["staffQuestions"] = {
             (snapshot: FDataSnapshot) -> Void in
+            self.objectArray.removeAll()
+            self.names.removeAll()
+            self.firebaseOrdered.removeAll()
+            self.firebaseData?.removeAll()
+            self.firebaseData = nil
             if let valueOfSnapshot = snapshot.value as! [ String : [String : String] ]? {
                 for (key, value) in valueOfSnapshot {
                     if (self.firebaseData==nil) {
@@ -114,58 +122,58 @@ class TableStaffQuestionsViewController: UITableViewController {
                     }
                 }
             }
-            
-            var firebaseOrdered:[ [String:String] ] = [ [String:String] ]()
             for (key, value) in self.firebaseData! {
                 if(key != "TEST"){
-                    firebaseOrdered.append(value)
-                }
-            }
-            for var i = 0; i<firebaseOrdered.count; i++ {
-                for var j = i+1; j < firebaseOrdered.count; j++ {
-                    if (Int(firebaseOrdered[i]["sentTimestamp"]!) > Int(firebaseOrdered[j]["sentTimestamp"]!)) {
-                        let tempVal = firebaseOrdered[j]
-                        firebaseOrdered[j] = firebaseOrdered[i]
-                        firebaseOrdered[i] = tempVal
+                    if (value["source"] == UIDevice.currentDevice().identifierForVendor!.UUIDString) {
+                        self.firebaseOrdered.append(value)
                     }
                 }
             }
-            
-            var namesTemporary:[ String : [(String,String)] ] = [ String : [(String,String)] ]()
+            for var i = 0; i<self.firebaseOrdered.count; i++ {
+                for var j = i+1; j < self.firebaseOrdered.count; j++ {
+                    if (Int(self.firebaseOrdered[i]["sentTimestamp"]!) > Int(self.firebaseOrdered[j]["sentTimestamp"]!)) {
+                        let tempVal = self.firebaseOrdered[j]
+                        self.firebaseOrdered[j] = self.firebaseOrdered[i]
+                        self.firebaseOrdered[i] = tempVal
+                    }
+                }
+            }
+            self.namesTemporary.removeAll()
+            self.namesTemporary = [ String : [(String,String)] ]()
             var detailedInformationCounter = 0
             
             self.objectArray = [Objects]()
-            for var i = 0; i<firebaseOrdered.count; i++ {
+            for var i = 0; i<self.firebaseOrdered.count; i++ {
                 // Format the start day
-                var date = NSDate(timeIntervalSince1970: Double(firebaseOrdered[i]["sentTimestamp"]!)!)
+                var date = NSDate(timeIntervalSince1970: Double(self.firebaseOrdered[i]["sentTimestamp"]!)!)
                 let dayTimePeriodFormatter = NSDateFormatter()
                 dayTimePeriodFormatter.dateFormat = "EEEE d, yyyy"
                 let dateStringStart = dayTimePeriodFormatter.stringFromDate(date)
-                firebaseOrdered[i]["formattedSentDay"] = dateStringStart
+                self.firebaseOrdered[i]["formattedSentDay"] = dateStringStart
                 // Format the start time
                 dayTimePeriodFormatter.dateFormat = "h:mm a"
                 let timeStringStart = dayTimePeriodFormatter.stringFromDate(date)
-                firebaseOrdered[i]["formattedSentTime"] = timeStringStart
+                self.firebaseOrdered[i]["formattedSentTime"] = timeStringStart
                 
-                if namesTemporary[dateStringStart] == nil {
-                    namesTemporary[dateStringStart] = [(String,String)]()
+                if self.namesTemporary[dateStringStart] == nil {
+                    self.namesTemporary[dateStringStart] = [(String,String)]()
                     self.detailedInformation.append( [   [(String,String)]   ]()  )
                     detailedInformationCounter += 1
                     self.objectArray.append(Objects(sectionName: dateStringStart, sectionObjects: [(String,String)]() ))
                 }
                 // Append the question
-                namesTemporary[dateStringStart]?.append(("\(timeStringStart)" , "\(firebaseOrdered[i]["question"]!)"))
-                self.objectArray[detailedInformationCounter-1].sectionObjects.append(("\(timeStringStart)" , "\(firebaseOrdered[i]["question"]!)"))
+                self.namesTemporary[dateStringStart]?.append(("\(timeStringStart)" , "Q: \(self.firebaseOrdered[i]["question"]!)"))
+                self.objectArray[detailedInformationCounter-1].sectionObjects.append(("\(timeStringStart)" , "Q: \(self.firebaseOrdered[i]["question"]!)"))
                 // Check if there is an answer
-                if (firebaseOrdered[i]["answer"] != nil) {
-                    if (firebaseOrdered[i]["answer"] != "" ) {
-                        namesTemporary[dateStringStart]?.append(("\(timeStringStart)" , "\(firebaseOrdered[i]["answer"]!)"))
-                        self.objectArray[detailedInformationCounter-1].sectionObjects.append(("\(timeStringStart)" , "\(firebaseOrdered[i]["answer"]!)"))
+                if (self.firebaseOrdered[i]["answer"] != nil) {
+                    if (self.firebaseOrdered[i]["answer"] != "" ) {
+                        self.namesTemporary[dateStringStart]?.append(("\(timeStringStart)" , "A: \(self.firebaseOrdered[i]["answer"]!)"))
+                        self.objectArray[detailedInformationCounter-1].sectionObjects.append(("\(timeStringStart)" , "A: \(self.firebaseOrdered[i]["answer"]!)"))
                     }
                 }
             }
-            self.names = namesTemporary
-            print("\(self.names)")
+            self.names = self.namesTemporary
+            // print("\(self.names)")
         }
     }
 }

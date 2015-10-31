@@ -11,10 +11,14 @@ import Foundation
 import UIKit
 import Firebase
 
+
+
 class StaffQuestionsViewController:UIViewController {
     var textField = UITextView()
+    var sendButton = UIButton()
     var questions = TableStaffQuestionsViewController()
     var screenContainer = UIView()
+    var backend = Backend()
     // var textFieldToBottomLayoutGuideConstraint: NSLayoutConstraint!
     var screenRect = CGRect(x: 0, y: 0, width: 0, height: 0)
     
@@ -31,8 +35,22 @@ class StaffQuestionsViewController:UIViewController {
         screenContainer.frame = CGRectMake(0, 65, screenWidth, screenHeight - 65)
         screenContainer.backgroundColor = UIColor.whiteColor()
         // Set up the textField to write responses
-        textField.frame = CGRect(x: 0, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.75, height: 100)
+        textField.frame = CGRect(x: screenContainer.frame.size.width*0.025, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.70, height: 70)
         textField.text = "Jesus was here"
+        textField.layer.borderColor = UIColor.grayColor().CGColor
+        textField.layer.borderWidth = 2.0
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
+        // Set up the send button
+        // UIDevice.currentDevice().identifierForVendor!.UUIDString
+        sendButton.frame = CGRect(x: screenContainer.frame.size.width*0.75, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.20, height: 70)
+        sendButton.layer.borderColor = UIColor.grayColor().CGColor
+        sendButton.layer.cornerRadius = 5
+        sendButton.layer.borderWidth = 2.0
+        sendButton.setTitle("Submit", forState: .Normal)
+        sendButton.layer.backgroundColor = UIColor(red:0.22, green:0.50, blue:0.87, alpha:1.0).CGColor
+        sendButton.addTarget(self, action: "sendStaffQuestion:", forControlEvents: .TouchUpInside)
+        self.screenContainer.addSubview(sendButton)
         // Set up the table view with the previous questions
         questions.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight - 100 - 65)
         // Add the questions to the view.
@@ -57,7 +75,32 @@ class StaffQuestionsViewController:UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
+    // Functions that writes the question to firebase
+    func sendStaffQuestion(sender: UIButton) {
+        let uniqueQuestionId = NSUUID().UUIDString
+        let reference = backend.firebaseConnection.childByAppendingPath("staffQuestions/\(uniqueQuestionId)")
+        let data = [
+            "question" : "\(textField.text!)",
+            "answer" : "",
+            "sentTimestamp": "\(NSDate().timeIntervalSince1970)",
+            "answeredTimestamp" : "",
+            "source" : "\(UIDevice.currentDevice().identifierForVendor!.UUIDString)",
+            "status" : "not answered"
+        ]
+        reference.setValue(data)
+        // ------- questions.tableView.reloadData()
+        // Create a callback that watches changes in this particular question
+        // in case it is answered
+        backend.firebaseConnection.childByAppendingPath("staffQuestions/\(uniqueQuestionId)").observeEventType(.Value, withBlock: {
+            snapshot in
+            print("BEFORE ANSWER ")
+            print("\(snapshot.key) -> \(snapshot.value)")
+            print("AFTER ANSWER ")
+            // let value: (FDataSnapshot -> Void)? = self.backend.options["staffQuestions"]?
+            self.questions.tableView.reloadData()
+        })
+
+    }
     func keyboardWillShow(sender: NSNotification) {
         // Moves the screenContainer up
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {

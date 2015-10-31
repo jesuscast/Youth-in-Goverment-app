@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         screenWidth = screenRect.size.width
         screenHeight = screenRect.size.height
         //
-        
+        NSLog("\(UIDevice.currentDevice().identifierForVendor!.UUIDString)")
         self.view.addSubview(nav.view)
         self.nav.pushViewController(OptionsViewController(), animated: true)
     }

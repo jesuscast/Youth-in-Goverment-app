@@ -20,6 +20,8 @@ class BillUpdatesViewController: UITableViewController {
     
     var backend = Backend()
     
+    var defaults = NSUserDefaults.standardUserDefaults()
+    
     var idOfSelectedBill = "-JwEDsoyuSGOIAvAeTym"
     // MARK: - Properties
     var names: [ String: [(String,String)] ] = ["Tomato": [("origin","central amerca"), ("color","red")], "apple": [("origin","europe"), ("color","red")]] {
@@ -82,11 +84,12 @@ class BillUpdatesViewController: UITableViewController {
     
     // MARK: - Override callbacks from firebase
     func overrideFirebaseCallbacks() {
-        // Check which option did you select
-        // print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
-        // Obtain the id of the selected bill
-        // let idOfSelectedBill = self.names["Bills"]![indexPath.row].1
-        // Create the tuple view controller
+        if (defaults.objectForKey("savedId") != nil) {
+            idOfSelectedBill = defaults.valueForKey("savedId")! as! String
+        }
+        else {
+            idOfSelectedBill = "-JwEDsoyuSGOIAvAeTym"
+        }
         self.backend.firebaseConnection.childByAppendingPath("bills").childByAppendingPath("\(idOfSelectedBill)").observeSingleEventOfType(.Value, withBlock: {
             snapshotInternal in
             NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")

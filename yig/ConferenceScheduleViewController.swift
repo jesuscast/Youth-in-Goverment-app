@@ -147,12 +147,17 @@ class ConferenceScheduleViewController: UITableViewController {
                     firebaseOrdered.append(value)
                 }
             }
-            for var i = 0; i<firebaseOrdered.count; i++ {
-                for var j = i+1; j < firebaseOrdered.count; j++ {
-                    if (Int(firebaseOrdered[i]["startTimestamp"]!) > Int(firebaseOrdered[j]["startTimestamp"]!)) {
-                        let tempVal = firebaseOrdered[j]
-                        firebaseOrdered[j] = firebaseOrdered[i]
+            var needsSort = true
+            while (needsSort == true) {
+                needsSort = false
+                for var i = 0; i < (firebaseOrdered.count - 1); i++ {
+                    let nextElementIsBigger = Double(firebaseOrdered[i]["sentTimestamp"]!) < Double(firebaseOrdered[i+1]["sentTimestamp"]!)
+                    if (nextElementIsBigger) {
+                        // Swap
+                        let tempVal = firebaseOrdered[i+1]
+                        firebaseOrdered[i+1] = firebaseOrdered[i]
                         firebaseOrdered[i] = tempVal
+                        needsSort = true
                     }
                 }
             }

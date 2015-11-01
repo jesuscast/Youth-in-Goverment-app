@@ -68,7 +68,7 @@ class CandidatesViewController: UITableViewController {
         let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
         // Configure the cell...
         cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
-        cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].1
+        // cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].1
         return cell
     }
     
@@ -83,95 +83,46 @@ class CandidatesViewController: UITableViewController {
         backend.options["candidates"] = {
             (snapshot: FDataSnapshot) -> Void in
             // First organize all of these objects into groups
-            var temporaryDataForOffices = [ String : [String : String] ]()
+            var temporaryDataForOffices = [ String : [(String, String)] ]()
             // Loop through all the candidates
+            NSLog("\(snapshot.value)")
+            self.names.removeAll()
+            self.objectArray.removeAll()
             if let valueOfSnapshot = snapshot.value as! [ String : [String : String] ]? {
                 // Loop through all the information of the candidates
-                switch(valueOfSnapshot["office"]) {
-                default:
-                    NSLog("Ignoring this statement")
-                }
-//                for (key, value) in valueOfSnapshot {
-//                    // Check the office of the candidates
-//                    if(key )
-//                }
-            }
-            // Then convert into object arrays.
-            // Then assign to names and therefore reload
-            /*
-            self.objectArray.removeAll()
-            self.names.removeAll()
-            self.firebaseOrdered.removeAll()
-            self.firebaseData?.removeAll()
-            self.firebaseData = nil
-            if let valueOfSnapshot = snapshot.value as! [ String : [String : String] ]? {
-                for (key, value) in valueOfSnapshot {
-                    if (self.firebaseData==nil) {
-                        self.firebaseData = ["TEST":["HELLO":"NOTHING"]]
+                for (keyCandidateData, valueCandidateData) in valueOfSnapshot {
+                    switch(valueCandidateData["office"]!) {
+                    case "Governor":
+                        //
+                        if (temporaryDataForOffices["Governor"]==nil) {
+                            temporaryDataForOffices["Governor"] = [(String, String)]()
+                        }
+                        temporaryDataForOffices["Governor"]!.append((valueCandidateData["name"]!,keyCandidateData))
+                    case "Lieutenant Governor":
+                        //
+                        temporaryDataForOffices["Lieutenant Governor"]!.append((valueCandidateData["name"]!,keyCandidateData))
+                    case "Speaker of the House":
+                        //
+                        temporaryDataForOffices["Speaker of the House"]!.append((valueCandidateData["name"]!,keyCandidateData))
+                    case "Secretary of State":
+                        //
+                        temporaryDataForOffices["Secretary of State"]!.append((valueCandidateData["name"]!,keyCandidateData))
+                    case "Attorney General":
+                        //
+                        temporaryDataForOffices["Attorney General"]!.append((valueCandidateData["name"]!,keyCandidateData))
+                    default:
+                        NSLog("Ignoring this statement")
+                        // create a click button that is going to extract all of the information
+                        // and send to the listtuplesviewcontroller
                     }
-                    if self.firebaseData![key] == nil {
-                        self.firebaseData![key] = value
+                    for (key, value) in temporaryDataForOffices {
+                        // print("\(key) -> \(value)")
+                        self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
                     }
+                    self.names = temporaryDataForOffices
                 }
-            }
-            for (key, value) in self.firebaseData! {
-                if(key != "TEST"){
-                    if (value["source"] == UIDevice.currentDevice().identifierForVendor!.UUIDString) {
-                        self.firebaseOrdered.append(value)
-                    }
-                }
-            }
-            var needsSort = true
-            while (needsSort == true) {
-                needsSort = false
-                for var i = 0; i < (self.firebaseOrdered.count - 1); i++ {
-                    let nextElementIsBigger = Double(self.firebaseOrdered[i]["sentTimestamp"]!) < Double(self.firebaseOrdered[i+1]["sentTimestamp"]!)
-                    if (nextElementIsBigger) {
-                        // Swap
-                        let tempVal = self.firebaseOrdered[i+1]
-                        self.firebaseOrdered[i+1] = self.firebaseOrdered[i]
-                        self.firebaseOrdered[i] = tempVal
-                        needsSort = true
-                    }
-                }
-            }
-            self.namesTemporary.removeAll()
-            self.namesTemporary = [ String : [(String,String)] ]()
-            var detailedInformationCounter = 0
-            
-            self.objectArray = [Objects]()
-            for var i = 0; i<self.firebaseOrdered.count; i++ {
-                // Format the start day
-                var date = NSDate(timeIntervalSince1970: Double(self.firebaseOrdered[i]["sentTimestamp"]!)!)
-                let dayTimePeriodFormatter = NSDateFormatter()
-                dayTimePeriodFormatter.dateFormat = "EEEE d, yyyy"
-                let dateStringStart = dayTimePeriodFormatter.stringFromDate(date)
-                self.firebaseOrdered[i]["formattedSentDay"] = dateStringStart
-                // Format the start time
-                dayTimePeriodFormatter.dateFormat = "h:mm a"
-                let timeStringStart = dayTimePeriodFormatter.stringFromDate(date)
-                self.firebaseOrdered[i]["formattedSentTime"] = timeStringStart
                 
-                if self.namesTemporary[dateStringStart] == nil {
-                    self.namesTemporary[dateStringStart] = [(String,String)]()
-                    self.detailedInformation.append( [   [(String,String)]   ]()  )
-                    detailedInformationCounter += 1
-                    self.objectArray.append(Objects(sectionName: dateStringStart, sectionObjects: [(String,String)]() ))
-                }
-                // Append the question
-                self.namesTemporary[dateStringStart]?.append(("\(timeStringStart)" , "Q: \(self.firebaseOrdered[i]["question"]!)"))
-                self.objectArray[detailedInformationCounter-1].sectionObjects.append(("\(timeStringStart)" , "Q: \(self.firebaseOrdered[i]["question"]!)"))
-                // Check if there is an answer
-                if (self.firebaseOrdered[i]["answer"] != nil) {
-                    if (self.firebaseOrdered[i]["answer"] != "" ) {
-                        self.namesTemporary[dateStringStart]?.append(("\(timeStringStart)" , "A: \(self.firebaseOrdered[i]["answer"]!)"))
-                        self.objectArray[detailedInformationCounter-1].sectionObjects.append(("\(timeStringStart)" , "A: \(self.firebaseOrdered[i]["answer"]!)"))
-                    }
-                }
             }
-            self.names = self.namesTemporary
-            // print("\(self.names)")
-            */
         }
     }
 }

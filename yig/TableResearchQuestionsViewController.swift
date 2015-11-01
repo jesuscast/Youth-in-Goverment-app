@@ -11,7 +11,7 @@ import Firebase
 
 
 
-class TableStaffQuestionsViewController: UITableViewController {
+class TableResearchQuestionsViewController: UITableViewController {
     // MARK: - Properties
     var names: [ String: [(String,String)] ] = ["Tomato": [("origin","central amerca"), ("color","red")], "apple": [("origin","europe"), ("color","red")]] {
         didSet {
@@ -104,8 +104,8 @@ class TableStaffQuestionsViewController: UITableViewController {
     }
     // MARK: - Callbacks from firebase
     func overrideFirebaseCallbacks() {
-
-        backend.options["staffQuestions"] = {
+        
+        backend.options["researchQuestions"] = {
             (snapshot: FDataSnapshot) -> Void in
             self.objectArray.removeAll()
             self.names.removeAll()
@@ -135,11 +135,11 @@ class TableStaffQuestionsViewController: UITableViewController {
                 for var i = 0; i < (self.firebaseOrdered.count - 1); i++ {
                     let nextElementIsBigger = Double(self.firebaseOrdered[i]["sentTimestamp"]!) < Double(self.firebaseOrdered[i+1]["sentTimestamp"]!)
                     if (nextElementIsBigger) {
-                        // Swap
-                        let tempVal = self.firebaseOrdered[i+1]
-                        self.firebaseOrdered[i+1] = self.firebaseOrdered[i]
-                        self.firebaseOrdered[i] = tempVal
-                        needsSort = true
+                    // Swap
+                    let tempVal = self.firebaseOrdered[i+1]
+                    self.firebaseOrdered[i+1] = self.firebaseOrdered[i]
+                    self.firebaseOrdered[i] = tempVal
+                    needsSort = true
                     }
                 }
             }

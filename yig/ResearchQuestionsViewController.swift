@@ -11,32 +11,12 @@ import Foundation
 import UIKit
 import Firebase
 
-extension String {
-    init(sep:String, _ lines:String...){
-        self = ""
-        for (idx, item) in lines.enumerate() {
-            self += "\(item)"
-            if idx < lines.count-1 {
-                self += sep
-            }
-        }
-    }
-    
-    init(_ lines:String...){
-        self = ""
-        for (idx, item) in lines.enumerate() {
-            self += "\(item)"
-            if idx < lines.count-1 {
-                self += "\n"
-            }
-        }
-    }
-}
+
 
 class ResearchQuestionsViewController:UIViewController {
     var textField = UITextView()
     var sendButton = UIButton()
-    var questions = TableStaffQuestionsViewController()
+    var questions = TableResearchQuestionsViewController()
     var screenContainer = UIView()
     var backend = Backend()
     // var textFieldToBottomLayoutGuideConstraint: NSLayoutConstraint!
@@ -55,7 +35,7 @@ class ResearchQuestionsViewController:UIViewController {
         screenContainer.frame = CGRectMake(0, 65, screenWidth, screenHeight - 65)
         screenContainer.backgroundColor = UIColor.whiteColor()
         // Set up the textField to write responses
-        textField.frame = CGRect(x: screenContainer.frame.size.width*0.025, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.70, height: 70)
+        textField.frame = CGRect(x: screenContainer.frame.size.width*0.025, y: (screenContainer.frame.size.height-90), width: screenContainer.frame.size.width*0.70, height: 70)
         textField.text = "Jesus was here"
         textField.layer.borderColor = UIColor.grayColor().CGColor
         textField.layer.borderWidth = 2.0
@@ -63,7 +43,7 @@ class ResearchQuestionsViewController:UIViewController {
         textField.clipsToBounds = true
         // Set up the send button
         // UIDevice.currentDevice().identifierForVendor!.UUIDString
-        sendButton.frame = CGRect(x: screenContainer.frame.size.width*0.75, y: (screenContainer.frame.size.height-100), width: screenContainer.frame.size.width*0.20, height: 70)
+        sendButton.frame = CGRect(x: screenContainer.frame.size.width*0.75, y: (screenContainer.frame.size.height-90), width: screenContainer.frame.size.width*0.20, height: 70)
         sendButton.layer.borderColor = UIColor.grayColor().CGColor
         sendButton.layer.cornerRadius = 5
         sendButton.layer.borderWidth = 2.0
@@ -113,10 +93,11 @@ class ResearchQuestionsViewController:UIViewController {
         // in case it is answered
         backend.firebaseConnection.childByAppendingPath("researchQuestions/\(uniqueQuestionId)").observeEventType(.Value, withBlock: {
             snapshot in
-            //print("\(snapshot.key) -> \(snapshot.value)")
-            print("before receiving data")
-            // let value: (FDataSnapshot -> Void)? = self.backend.options["staffQuestions"]?
-            self.backend.options["researchQuestions"]!!(snapshot)
+            print("BEFORE ANSWER ")
+            print("\(snapshot.key) -> \(snapshot.value)")
+            print("AFTER ANSWER ")
+            // let value: (FDataSnapshot -> Void)? = self.backend.options["ResearchQuestions"]?
+            self.questions.tableView.reloadData()
         })
         
     }

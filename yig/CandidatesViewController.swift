@@ -25,6 +25,15 @@ class CandidatesViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
+    var offices: [ String ] = [
+        "Governor",
+        "Lieutenant Governor",
+        "Speaker of the House",
+        "Secretary of State",
+        "Attorney General",
+    ]
+    
     // This define the structure of the view table with sections.
     struct Objects {
         
@@ -83,7 +92,13 @@ class CandidatesViewController: UITableViewController {
         backend.options["candidates"] = {
             (snapshot: FDataSnapshot) -> Void in
             // First organize all of these objects into groups
-            var temporaryDataForOffices = [ String : [(String, String)] ]()
+            var temporaryDataForOffices: [ String : [(String, String)] ] = [
+                "Governor": [(String, String)](),
+                "Lieutenant Governor": [(String, String)](),
+                "Speaker of the House": [(String, String)](),
+                "Secretary of State": [(String, String)](),
+                "Attorney General": [(String, String)](),
+            ]
             // Loop through all the candidates
             NSLog("\(snapshot.value)")
             self.names.removeAll()
@@ -94,9 +109,6 @@ class CandidatesViewController: UITableViewController {
                     switch(valueCandidateData["office"]!) {
                     case "Governor":
                         //
-                        if (temporaryDataForOffices["Governor"]==nil) {
-                            temporaryDataForOffices["Governor"] = [(String, String)]()
-                        }
                         temporaryDataForOffices["Governor"]!.append((valueCandidateData["name"]!,keyCandidateData))
                     case "Lieutenant Governor":
                         //
@@ -125,4 +137,71 @@ class CandidatesViewController: UITableViewController {
             }
         }
     }
+    // MARK: - Obtain individual candidates
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Check which option did you select
+        print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
+        // Obtain the id of the selected bill
+        let idOfSelectedBill = self.names[offices[indexPath.section]]![indexPath.row].1
+        // Create the tuple view controller
+        let vcc = ListTuplesViewController()
+        self.backend.firebaseConnection.childByAppendingPath("candidates").childByAppendingPath("\(idOfSelectedBill)").observeSingleEventOfType(.Value, withBlock: {
+            snapshotInternal in
+            NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
+            
+            var namesTemp = [ String : [(String , String)] ]()
+            namesTemp["Candidate Information"] = [(String , String)]()
+            if let valueOfSnapshot = snapshotInternal.value as! [String : String]? {
+                NSLog("The value of the snapshot is \(valueOfSnapshot)")
+                for (elememntInBillName, elementInBill) in valueOfSnapshot {
+                    namesTemp["Candidate Information"]?.append( (elememntInBillName, elementInBill) )
+                    
+                }
+                NSLog("NAMES BEFORE CLEANING: \(namesTemp)")
+                // NOW filter the namesTemp and substitute for the labels I want
+                // Then after filtering it. Push the Tuple View Controller
+                //------------------------
+                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
+                for (keySelected, valueSelected) in namesTemp["Candidate Information"]! {
+                    var newKeyName = ""
+                    switch(keySelected) {
+                        // Information about the bill
+                    case "name":
+                        newKeyName = "Name"
+                        namesTempClean[0] = (newKeyName, valueSelected)
+                    case "office":
+                        newKeyName = "Running for"
+                        namesTempClean[1] = (newKeyName, valueSelected)
+                        // Information about the authors
+                    case "party":
+                        newKeyName = "Political Party"
+                        namesTempClean[2] = (newKeyName, valueSelected)
+                    case "slogan":
+                        newKeyName = "Slogan"
+                        namesTempClean[3] = (newKeyName, valueSelected)
+                    case "school":
+                        newKeyName = "School"
+                        namesTempClean[4] = (newKeyName, valueSelected)
+                    case "statement":
+                        newKeyName = "Statement"
+                        namesTempClean[5] = (newKeyName, valueSelected)
+                    case "graduation-year":
+                        newKeyName = "Graduation year"
+                        namesTempClean[6] = (newKeyName, valueSelected)
+                    case "conference-role":
+                        newKeyName = "This year's role"
+                        namesTempClean[7] = (newKeyName, valueSelected)
+                    default:
+                        print("Ignore this information")
+                        // eventTemp.append((keySelected,"Unknown"))
+                    }
+                }
+                vcc.names = [ "Candidate Information" : namesTempClean ]
+                print("\(self.navigationController)")
+                self.navigationController?.pushViewController(vcc, animated: true)
+                
+            }
+        })
+    }
+    
 }

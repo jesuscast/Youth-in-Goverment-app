@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     
     var screenHeight = CGFloat(0.0)
    
+    var splash = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -38,7 +39,11 @@ class ViewController: UIViewController {
         //
         NSLog("\(UIDevice.currentDevice().identifierForVendor!.UUIDString)")
         self.view.addSubview(nav.view)
-        self.nav.pushViewController(OptionsViewController(), animated: true)
+        splash.frame = CGRect(x: 0, y: 0, width: screenWidth+10, height: screenHeight)
+        splash.setBackgroundImage(UIImage(named: "splash.png"), forState: .Normal)
+        splash.addTarget(self, action: "optionsScreen:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(splash)
+        //self.nav.pushViewController(OptionsViewController(), animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,6 +51,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func optionsScreen(sender: UIButton) {
+        splash.removeFromSuperview()
+        self.nav.pushViewController(OptionsViewController(), animated: true)
+    }
 }
 
 

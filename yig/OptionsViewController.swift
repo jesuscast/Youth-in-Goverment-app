@@ -127,7 +127,6 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
             x = MapViewController()
         case .Docket:
             x = DocketViewController()
-            // x = MapViewController()
         case .BillUpdates:
             x = BillUpdatesViewController()
         case .Bus:

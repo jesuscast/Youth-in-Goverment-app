@@ -21,7 +21,7 @@ class CommitteeViewController: UITableViewController {
     var screenHeight = CGFloat(0.0)
     // Committee
     var committee = ""
-    var names: [ String: [(String,String)] ] = ["Committees":[ ("Criminal Justice",""), ("Education",""), ("Environmental",""), ("General Issues",""), ("Healthcare and Human Services",""), ("Transportation",""), ("Governor Desk",""), ("passed legislation",""), ("vetoed legislation","") ] ] {
+    var names: [ String: [(String,String)] ] = ["Committees":[ ("Criminal Justice",""), ("Education",""), ("Environmental",""), ("General Issues",""), ("Healthcare and Human Services",""), ("Transportation",""), ("Governor Desk",""), ("passed legislation",""), ("vetoed legislation",""), ("Premier House",""), ("Premier Senate",""), ("House",""), ("Senate","") ] ] {
         didSet {
             self.tableView.reloadData()
         }

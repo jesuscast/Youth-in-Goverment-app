@@ -64,6 +64,9 @@
 		FAB328C51BE036C7005F30F8 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB328941BE036C6005F30F8 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		FAB328CA1BE037CE005F30F8 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB328C91BE037CE005F30F8 /* JSQSystemSoundPlayer.m */; };
 		FADE109F1BE409180088C757 /* TableStaffQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE109E1BE409180088C757 /* TableStaffQuestionsViewController.swift */; };
+		FAE3D5EB1BE692D100077825 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE3D5EA1BE692D100077825 /* map.png */; };
+		FAE3D5ED1BE69D4700077825 /* loginpicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAE3D5EC1BE69D4700077825 /* loginpicture.jpg */; };
+		FAE3D5EF1BE69D9100077825 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = FAE3D5EE1BE69D9100077825 /* splash.png */; };
 		FAEEE6211BDE36D7002C08EC /* ListTuplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEE6201BDE36D7002C08EC /* ListTuplesViewController.swift */; };
 		FAF7C4531BD48E38002B5285 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4521BD48E38002B5285 /* AppDelegate.swift */; };
 		FAF7C4551BD48E38002B5285 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4541BD48E38002B5285 /* ViewController.swift */; };
@@ -189,6 +192,9 @@
 		FAB328C81BE037CE005F30F8 /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		FAB328C91BE037CE005F30F8 /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		FADE109E1BE409180088C757 /* TableStaffQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableStaffQuestionsViewController.swift; sourceTree = "<group>"; };
+		FAE3D5EA1BE692D100077825 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		FAE3D5EC1BE69D4700077825 /* loginpicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loginpicture.jpg; sourceTree = "<group>"; };
+		FAE3D5EE1BE69D9100077825 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		FAEEE6201BDE36D7002C08EC /* ListTuplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTuplesViewController.swift; sourceTree = "<group>"; };
 		FAF7C44F1BD48E38002B5285 /* yig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF7C4521BD48E38002B5285 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -456,6 +462,9 @@
 		FAF7C4511BD48E38002B5285 /* yig */ = {
 			isa = PBXGroup;
 			children = (
+				FAE3D5EE1BE69D9100077825 /* splash.png */,
+				FAE3D5EC1BE69D4700077825 /* loginpicture.jpg */,
+				FAE3D5EA1BE692D100077825 /* map.png */,
 				FAF7C4521BD48E38002B5285 /* AppDelegate.swift */,
 				FAF7C4541BD48E38002B5285 /* ViewController.swift */,
 				FAF7C4561BD48E38002B5285 /* Main.storyboard */,
@@ -612,6 +621,8 @@
 				FAB3289B1BE036C6005F30F8 /* bubble_stroked.png in Resources */,
 				FAF7C45D1BD48E38002B5285 /* LaunchScreen.storyboard in Resources */,
 				FAB328BC1BE036C6005F30F8 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				FAE3D5EF1BE69D9100077825 /* splash.png in Resources */,
+				FAE3D5EB1BE692D100077825 /* map.png in Resources */,
 				FAB328991BE036C6005F30F8 /* bubble_min_tailless.png in Resources */,
 				FAB328951BE036C6005F30F8 /* bubble.png in Resources */,
 				FAB3289E1BE036C6005F30F8 /* bubble_stroked_tailless@2x.png in Resources */,
@@ -624,6 +635,7 @@
 				FAB328A21BE036C6005F30F8 /* camera@2x.png in Resources */,
 				FAB328AE1BE036C6005F30F8 /* JSQMessagesViewController.xib in Resources */,
 				FAB328981BE036C6005F30F8 /* bubble_min@2x.png in Resources */,
+				FAE3D5ED1BE69D4700077825 /* loginpicture.jpg in Resources */,
 				FAB3289C1BE036C6005F30F8 /* bubble_stroked@2x.png in Resources */,
 				FAF7C45A1BD48E38002B5285 /* Assets.xcassets in Resources */,
 				FAB328A01BE036C6005F30F8 /* bubble_tailless@2x.png in Resources */,

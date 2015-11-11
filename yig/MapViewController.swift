@@ -52,6 +52,29 @@ class PointSelected: NSObject, MKAnnotation {
 }
 
 class MapViewController:UIViewController, MKMapViewDelegate {
+    var AnnotationsColors = [
+        "Gervais side, upper right": MKPinAnnotationColor.Green,
+        "Gervais side, upper left": MKPinAnnotationColor.Green,
+       "Gervais side, bottom right": MKPinAnnotationColor.Purple,
+        "Gervais side, bottom left": MKPinAnnotationColor.Green,
+        "Confederate Statue": MKPinAnnotationColor.Red,
+        "Pendleton side, upper right": MKPinAnnotationColor.Green,
+        "Pendleton side, upper left": MKPinAnnotationColor.Green,
+        "Pendleton side, bottom left": MKPinAnnotationColor.Red,
+        "Pendleton side, bottom right": MKPinAnnotationColor.Green,
+        "Richardson Square": MKPinAnnotationColor.Green,
+        "Wade Hampton Statue": MKPinAnnotationColor.Purple,
+        "Calhoun Building": MKPinAnnotationColor.Green,
+        "Thurmond Statue": MKPinAnnotationColor.Green,
+        "Capital Memorial": MKPinAnnotationColor.Red,
+        "Garage ramp—entry": MKPinAnnotationColor.Green,
+        "Garage ramp—exit": MKPinAnnotationColor.Green,
+        "Liberty Bell": MKPinAnnotationColor.Purple,
+        "Brown Bldg. Benches": MKPinAnnotationColor.Green,
+        "Brown Bldg. Entrance": MKPinAnnotationColor.Purple,
+        
+    ]
+    var allAnnotations: [String : MKAnnotation] = [String : MKAnnotation]()
     let data = [
         [
             "title": "Gervais side, bottom left",
@@ -75,8 +98,8 @@ class MapViewController:UIViewController, MKMapViewDelegate {
             "longitude": -81.033403
         ], // 34.000639, -81.033403
         [
-            "title": "Gervais side, bottom right",
-            "locationName": "Gervais side, bottom right",
+            "title": "Gervais side, upper left",
+            "locationName": "Gervais side, bottom left",
             "discipline": "",
             "latitude": 34.000507,
             "longitude": -81.033333
@@ -221,12 +244,13 @@ class MapViewController:UIViewController, MKMapViewDelegate {
         // 1
         map.delegate = self
         for point in data {
-            let stateHouseSteps1 = Point(title: String(point["title"]!),
+            let titleTemp = String(point["title"]!)
+            allAnnotations[titleTemp] = Point(title: titleTemp,
                 locationName: String(point["locationName"]!),
                 discipline: String(point["discipline"]!),
                 coordinate: CLLocationCoordinate2D(latitude: Double(point["latitude"]! as! Double), longitude: Double(point["longitude"]! as! Double)))
             // stateHouseSteps1.
-            map.addAnnotation(stateHouseSteps1)
+            map.addAnnotation(allAnnotations[titleTemp]!)
         }
         // Set up contents
         content.addSubview(map)
@@ -248,7 +272,11 @@ class MapViewController:UIViewController, MKMapViewDelegate {
                 // view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
             }
-            view.pinColor = MKPinAnnotationColor.Green
+            NSLog("\(annotation.title)")
+            if let possibleTitle = annotation.title {
+                view.pinColor = AnnotationsColors[possibleTitle]!
+            }
+            //MKPinAnnotationColor.Green
             return view
         }
         return nil

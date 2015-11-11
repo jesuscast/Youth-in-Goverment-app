@@ -42,6 +42,11 @@ class AnnouncementsViewController: UITableViewController {
     // An array of sections
     var objectArray = [Objects]()
     var detailedInformation:[ [   [(String,String)]   ] ] = [ [   [(String,String)]   ] ]()
+    
+    var defaults = NSUserDefaults.standardUserDefaults()
+    
+    var userType = ""
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +55,9 @@ class AnnouncementsViewController: UITableViewController {
         screenWidth = screenRect.size.width
         screenHeight = screenRect.size.height
         //
+        if (defaults.objectForKey("userType") != nil) {
+            userType = defaults.valueForKey("userType")! as! String
+        }
         self.view.frame         =   CGRectMake(0, 65, screenWidth, screenHeight);
         for (key, value) in names {
             // print("\(key) -> \(value)")
@@ -86,7 +94,14 @@ class AnnouncementsViewController: UITableViewController {
     }
     // MARK: - Callbacks from firebase
     func overrideFirebaseCallbacks() {
-        backend.options["announcements"] = {
+        var announcementsType = ""
+        if (userType == "delegate") {
+            announcementsType = "announcements"
+        } else {
+            announcementsType = "announcements2"
+        }
+    
+        backend.options[announcementsType] = {
             (snapshot: FDataSnapshot) -> Void in
             if let valueOfSnapshot = snapshot.value as! [ String : [String : String] ]? {
                 for (key, value) in valueOfSnapshot {

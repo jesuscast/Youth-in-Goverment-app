@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC90A89AEB9043D36AF212C4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B1343A528873E4773B7B8 /* Pods.framework */; };
+		FA2430B01BEC21C30088A2FA /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2430AF1BEC21C30088A2FA /* SelectUserTypeViewController.swift */; };
 		FA4C71561BDB6015007AF9F4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71551BDB6015007AF9F4 /* OptionsViewController.swift */; };
 		FA4C71581BDB6B07007AF9F4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */; };
 		FA4C715A1BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */; };
@@ -107,6 +108,7 @@
 		548B1343A528873E4773B7B8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E069DFC1A5AD641E569809 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6AFAD4040A86B00CF726CEA4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FA2430AF1BEC21C30088A2FA /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
 		FA4C71551BDB6015007AF9F4 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceScheduleViewController.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				FADE109E1BE409180088C757 /* TableStaffQuestionsViewController.swift */,
 				FA7B66FF1BE48EDE00440B00 /* CommitteeViewController.swift */,
 				FAA3860D1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift */,
+				FA2430AF1BEC21C30088A2FA /* SelectUserTypeViewController.swift */,
 			);
 			path = yig;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				FAF7C4811BD48E75002B5285 /* MapViewController.swift in Sources */,
 				FAF7C4831BD48E87002B5285 /* DocketViewController.swift in Sources */,
 				FAB328AB1BE036C6005F30F8 /* UIView+JSQMessages.m in Sources */,
+				FA2430B01BEC21C30088A2FA /* SelectUserTypeViewController.swift in Sources */,
 				FAB328C21BE036C7005F30F8 /* JSQMessagesToolbarContentView.m in Sources */,
 				FAA3860E1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift in Sources */,
 				FA7B67001BE48EDE00440B00 /* CommitteeViewController.swift in Sources */,

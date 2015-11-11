@@ -14,11 +14,6 @@ import CoreLocation
 class ViewController: UIViewController {
     var nav: UINavigationController = UINavigationController()
     
-  
-   
-    
-    // var items: [String] = ["Viper", "X", "Games"]
-    
     var screenRect = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     var screenWidth = CGFloat(0.0)

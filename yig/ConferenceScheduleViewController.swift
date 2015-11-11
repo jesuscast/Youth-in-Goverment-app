@@ -42,6 +42,11 @@ class ConferenceScheduleViewController: UITableViewController {
     // An array of sections
     var objectArray = [Objects]()
     var detailedInformation:[ [   [(String,String)]   ] ] = [ [   [(String,String)]   ] ]()
+    
+    var defaults = NSUserDefaults.standardUserDefaults()
+    
+    var userType = ""
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +55,9 @@ class ConferenceScheduleViewController: UITableViewController {
         screenWidth = screenRect.size.width
         screenHeight = screenRect.size.height
         //
+        if (defaults.objectForKey("userType") != nil) {
+            userType = defaults.valueForKey("userType")! as! String
+        }
         self.view.frame         =   CGRectMake(0, 65, screenWidth, screenHeight);
         for (key, value) in names {
             // print("\(key) -> \(value)")
@@ -128,7 +136,13 @@ class ConferenceScheduleViewController: UITableViewController {
     }
     // MARK: - Callbacks from firebase
     func overrideFirebaseCallbacks() {
-        backend.options["conferenceSchedule"] = {
+        var scheduleType = "conferenceSchedule"
+        if (userType == "delegate") {
+            scheduleType = "conferenceSchedule"
+        } else {
+            scheduleType = "conferenceSchedule2"
+        }
+        backend.options[scheduleType] = {
             (snapshot: FDataSnapshot) -> Void in
             if let valueOfSnapshot = snapshot.value as! [ String : [String : String] ]? {
                 for (key, value) in valueOfSnapshot {
@@ -151,7 +165,7 @@ class ConferenceScheduleViewController: UITableViewController {
             while (needsSort == true) {
                 needsSort = false
                 for var i = 0; i < (firebaseOrdered.count - 1); i++ {
-                    let nextElementIsBigger = Double(firebaseOrdered[i]["sentTimestamp"]!) < Double(firebaseOrdered[i+1]["sentTimestamp"]!)
+                    let nextElementIsBigger = Double(firebaseOrdered[i]["startTimestamp"]!) < Double(firebaseOrdered[i+1]["startTimestamp"]!)
                     if (nextElementIsBigger) {
                         // Swap
                         let tempVal = firebaseOrdered[i+1]

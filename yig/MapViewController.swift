@@ -53,25 +53,25 @@ class PointSelected: NSObject, MKAnnotation {
 
 class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     var AnnotationsColors = [
-        "Gervais side, upper right": MKPinAnnotationColor.Green,
-        "Gervais side, upper left": MKPinAnnotationColor.Green,
-       "Gervais side, bottom right": MKPinAnnotationColor.Purple,
-        "Gervais side, bottom left": MKPinAnnotationColor.Green,
+        "Gervais side, upper right": MKPinAnnotationColor.Red,
+        "Gervais side, upper left": MKPinAnnotationColor.Red,
+       "Gervais side, bottom right": MKPinAnnotationColor.Red,
+        "Gervais side, bottom left": MKPinAnnotationColor.Red,
         "Confederate Statue": MKPinAnnotationColor.Red,
-        "Pendleton side, upper right": MKPinAnnotationColor.Green,
-        "Pendleton side, upper left": MKPinAnnotationColor.Green,
+        "Pendleton side, upper right": MKPinAnnotationColor.Red,
+        "Pendleton side, upper left": MKPinAnnotationColor.Red,
         "Pendleton side, bottom left": MKPinAnnotationColor.Red,
-        "Pendleton side, bottom right": MKPinAnnotationColor.Green,
-        "Richardson Square": MKPinAnnotationColor.Green,
-        "Wade Hampton Statue": MKPinAnnotationColor.Purple,
-        "Calhoun Building": MKPinAnnotationColor.Green,
-        "Thurmond Statue": MKPinAnnotationColor.Green,
+        "Pendleton side, bottom right": MKPinAnnotationColor.Red,
+        "Richardson Square": MKPinAnnotationColor.Red,
+        "Wade Hampton Statue": MKPinAnnotationColor.Red,
+        "Calhoun Building": MKPinAnnotationColor.Red,
+        "Thurmond Statue": MKPinAnnotationColor.Red,
         "Capital Memorial": MKPinAnnotationColor.Red,
-        "Garage ramp—entry": MKPinAnnotationColor.Green,
-        "Garage ramp—exit": MKPinAnnotationColor.Green,
-        "Liberty Bell": MKPinAnnotationColor.Purple,
-        "Brown Bldg. Benches": MKPinAnnotationColor.Green,
-        "Brown Bldg. Entrance": MKPinAnnotationColor.Purple,
+        "Garage ramp—entry": MKPinAnnotationColor.Red,
+        "Garage ramp—exit": MKPinAnnotationColor.Red,
+        "Liberty Bell": MKPinAnnotationColor.Red,
+        "Brown Bldg. Benches": MKPinAnnotationColor.Red,
+        "Brown Bldg. Entrance": MKPinAnnotationColor.Red
         
     ]
     var allAnnotations: [String : MKAnnotation] = [String : MKAnnotation]()
@@ -81,6 +81,7 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
     var filtered:[Int] = []
     var tableViewWithOptions = UITableView()
     var itemsInTableSearch = [String]()
+    var previouslySelectedPin = ""
     let data = [
         [
             "title": "Gervais side, bottom left",
@@ -335,7 +336,7 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
             searchActive = true;
         }
         itemsInTableSearch = organizedElements
-        tableViewWithOptions.frame.size.height = CGFloat(Float(50 * itemsInTableSearch.count))
+        tableViewWithOptions.frame.size.height = CGFloat(Float(45 * itemsInTableSearch.count))
         tableViewWithOptions.reloadData()
         
     }
@@ -363,6 +364,21 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         // return itemsInTableSearch.count
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("You selected cell #\(indexPath.row)!")
+        let titleTemp = itemsInTableSearch[indexPath.row]
+        let annotationTemp = allAnnotations[titleTemp]
+        map.removeAnnotation(annotationTemp!)
+        AnnotationsColors[titleTemp] = MKPinAnnotationColor.Purple
+        map.addAnnotation(annotationTemp!)
+        if (previouslySelectedPin != "") {
+            let annotationPrevious = allAnnotations[previouslySelectedPin]
+            map.removeAnnotation(annotationPrevious!)
+            AnnotationsColors[previouslySelectedPin] = MKPinAnnotationColor.Red
+            map.addAnnotation(annotationPrevious!)
+        }
+        previouslySelectedPin = titleTemp
+    }
     
     
     

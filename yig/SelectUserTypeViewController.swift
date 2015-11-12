@@ -39,6 +39,7 @@ class SelectUserTypeViewController: UIViewController {
         //
         // Set up the delegate button
         IamDelegate.setTitle("Legislative branch", forState: .Normal)
+        IamDelegate.backgroundColor = UIColor.whiteColor()
         IamDelegate.layer.cornerRadius = 10
         IamDelegate.layer.borderColor = UIColor.blueColor().CGColor
         IamDelegate.layer.borderWidth = 2
@@ -48,12 +49,14 @@ class SelectUserTypeViewController: UIViewController {
         self.view.addSubview(IamDelegate)
         // Set up the judicial button
         IamJudicial.setTitle("Judicial branch", forState: .Normal)
+        IamJudicial.backgroundColor = UIColor.whiteColor()
         IamJudicial.layer.cornerRadius = 10
         IamJudicial.layer.borderColor = UIColor.blueColor().CGColor
         IamJudicial.layer.borderWidth = 2
         IamJudicial.addTarget(self, action: "setJudicial:", forControlEvents: .TouchUpInside)
         IamJudicial.setTitleColor(UIColor.blackColor(), forState: .Normal)
         IamJudicial.frame = CGRect(x: screenWidth*0.20, y: screenHeight*0.20, width: screenWidth*0.60, height: screenHeight*0.10)
+        self.view.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         self.view.addSubview(IamJudicial)
     }
     

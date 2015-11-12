@@ -84,12 +84,13 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
             }
             else {
-                items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings", "Change to Delegate"]
+                items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates",  "Change to Delegate"]
             }
         }
         else {
             activateState(.SelectUser)
         }
+        options.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         options.frame         =   CGRectMake(0, 0, screenWidth, screenHeight);
         options.delegate      =   self
         options.dataSource    =   self
@@ -150,8 +151,6 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
             case 5:
                 self.activateState(.Candidates)
             case 6:
-                self.activateState(.Settings)
-            case 7:
                 self.activateState(.ChangeToDelegate)
             default:
                 NSLog("sd")
@@ -164,7 +163,9 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         
         let cell:UITableViewCell = options.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         
+        cell.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         cell.textLabel?.text = self.items[indexPath.row]
+        cell.textLabel?.textColor = UIColor.whiteColor()
         
         return cell
         
@@ -204,17 +205,7 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         }
         let vc = x
         pushViewController(vc, animated: true) {
-            // Animation done
-            if (self.defaults.objectForKey("userType") != nil) {
-                self.userType = self.defaults.valueForKey("userType")! as! String
-                if (self.userType == "delegate") {
-               self.items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
-                }
-                else {
-                    self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings", "Change to Delegate"]
-                }
-            }
-            self.options.reloadData()
+            
         }
     }
     override func viewWillAppear(animated: Bool) {
@@ -225,7 +216,7 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 self.items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
             }
             else {
-                self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings", "Change to Delegate"]
+                self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates",  "Change to Delegate"]
             }
         }
     }

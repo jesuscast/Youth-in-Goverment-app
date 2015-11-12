@@ -59,6 +59,7 @@ class AnnouncementsViewController: UITableViewController {
             userType = defaults.valueForKey("userType")! as! String
         }
         self.view.frame         =   CGRectMake(0, 65, screenWidth, screenHeight);
+        self.view.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         for (key, value) in names {
             // print("\(key) -> \(value)")
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
@@ -83,8 +84,11 @@ class AnnouncementsViewController: UITableViewController {
         // let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
         // Configure the cell...
+        cell.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].1
         cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
         return cell
     }
     

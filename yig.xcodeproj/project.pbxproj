@@ -921,6 +921,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ymca.yig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos9.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "yig/yig-Bridging-Header.h";
 			};
 			name = Debug;
@@ -934,6 +935,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ymca.yig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos9.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "yig/yig-Bridging-Header.h";
 			};
 			name = Release;

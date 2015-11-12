@@ -195,16 +195,18 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         print("You selected cell #\(indexPath.row)!")
         let titleTemp = itemsInTableSearch[indexPath.row]
         let annotationTemp = allAnnotations[titleTemp]
-        map.removeAnnotation(annotationTemp!)
-        AnnotationsColors[titleTemp] = MKPinAnnotationColor.Purple
-        map.addAnnotation(annotationTemp!)
+        search.text = titleTemp
+        // map.removeAnnotation(annotationTemp!)
         if (previouslySelectedPin != "") {
             let annotationPrevious = allAnnotations[previouslySelectedPin]
             map.removeAnnotation(annotationPrevious!)
-            AnnotationsColors[previouslySelectedPin] = MKPinAnnotationColor.Red
-            map.addAnnotation(annotationPrevious!)
+            // AnnotationsColors[previouslySelectedPin] = MKPinAnnotationColor.Red
+            // map.addAnnotation(annotationPrevious!)
         }
+        AnnotationsColors[titleTemp] = MKPinAnnotationColor.Green
+        map.addAnnotation(annotationTemp!)
         previouslySelectedPin = titleTemp
+        tableViewWithOptions.frame.size.height = 0
     }
     
     struct Objects {
@@ -265,7 +267,7 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
                     coordinate: CLLocationCoordinate2D(latitude: latTemp, longitude: longTemp )
                 )
                 // stateHouseSteps1.
-                self.map.addAnnotation(self.allAnnotations[titleTemp]!)
+                // self.map.addAnnotation(self.allAnnotations[titleTemp]!)
             }
         }
     }

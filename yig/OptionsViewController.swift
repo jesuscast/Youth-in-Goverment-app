@@ -24,6 +24,8 @@ enum StatesApp:Equatable {
     case StaffQuestions
     case Settings
     case SelectUser
+    case ChangeToDelegate
+    case ChangeToJudicial
 }
 
 func ==(a: StatesApp, b:StatesApp) -> Bool{
@@ -40,6 +42,8 @@ func ==(a: StatesApp, b:StatesApp) -> Bool{
     case (.StaffQuestions, .StaffQuestions): return true
     case (.Settings, .Settings): return true
     case (.SelectUser, .SelectUser): return true
+        case (.ChangeToDelegate, .ChangeToDelegate): return true
+        case (.ChangeToJudicial, .ChangeToJudicial): return true
     default: return false
     }
 }
@@ -58,7 +62,11 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
     var defaults = NSUserDefaults.standardUserDefaults()
     
     var userType = ""
-    var items: [String] = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings"]
+    var items: [String] = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings"] {
+        didSet {
+            self.options.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,10 +81,10 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         if (defaults.objectForKey("userType") != nil) {
             userType = defaults.valueForKey("userType")! as! String
             if (userType == "delegate") {
-                items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings"]
+                items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
             }
             else {
-                items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings"]
+                items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings", "Change to Delegate"]
             }
         }
         else {
@@ -121,6 +129,8 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 self.activateState(.Candidates)
             case 9:
                 self.activateState(.Settings)
+            case 10:
+                self.activateState(.ChangeToJudicial)
             default:
                 NSLog("sd")
             }
@@ -141,6 +151,8 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 self.activateState(.Candidates)
             case 6:
                 self.activateState(.Settings)
+            case 7:
+                self.activateState(.ChangeToDelegate)
             default:
                 NSLog("sd")
             }
@@ -185,7 +197,45 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
             x = SettingsViewController()
         case .SelectUser:
             x = SelectUserTypeViewController()
+        case .ChangeToDelegate:
+            x = SelectUserTypeViewController()
+        case .ChangeToJudicial:
+            x = SelectUserTypeViewController()
         }
-        self.navigationController?.pushViewController(x, animated: true)
+        let vc = x
+        pushViewController(vc, animated: true) {
+            // Animation done
+            if (self.defaults.objectForKey("userType") != nil) {
+                self.userType = self.defaults.valueForKey("userType")! as! String
+                if (self.userType == "delegate") {
+               self.items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
+                }
+                else {
+                    self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings", "Change to Delegate"]
+                }
+            }
+            self.options.reloadData()
+        }
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if (self.defaults.objectForKey("userType") != nil) {
+            self.userType = self.defaults.valueForKey("userType")! as! String
+            if (self.userType == "delegate") {
+                self.items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
+            }
+            else {
+                self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates", "Settings", "Change to Delegate"]
+            }
+        }
+    }
+    
+    func pushViewController(viewController: UIViewController,
+        animated: Bool, completion: Void -> Void) {
+            
+            CATransaction.begin()
+            CATransaction.setCompletionBlock(completion)
+            self.navigationController?.pushViewController(viewController, animated: animated)
+            CATransaction.commit()
     }
 }

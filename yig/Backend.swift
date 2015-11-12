@@ -25,6 +25,7 @@ class Backend {
         "schoolList" : nil,
         "staffQuestions" : nil,
         "users" : nil,
+        "annotations": nil
         
     ]
     

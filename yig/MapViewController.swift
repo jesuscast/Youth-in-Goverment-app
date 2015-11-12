@@ -52,178 +52,17 @@ class PointSelected: NSObject, MKAnnotation {
 }
 
 class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
-    var AnnotationsColors = [
-        "Gervais side, upper right": MKPinAnnotationColor.Red,
-        "Gervais side, upper left": MKPinAnnotationColor.Red,
-       "Gervais side, bottom right": MKPinAnnotationColor.Red,
-        "Gervais side, bottom left": MKPinAnnotationColor.Red,
-        "Confederate Statue": MKPinAnnotationColor.Red,
-        "Pendleton side, upper right": MKPinAnnotationColor.Red,
-        "Pendleton side, upper left": MKPinAnnotationColor.Red,
-        "Pendleton side, bottom left": MKPinAnnotationColor.Red,
-        "Pendleton side, bottom right": MKPinAnnotationColor.Red,
-        "Richardson Square": MKPinAnnotationColor.Red,
-        "Wade Hampton Statue": MKPinAnnotationColor.Red,
-        "Calhoun Building": MKPinAnnotationColor.Red,
-        "Thurmond Statue": MKPinAnnotationColor.Red,
-        "Capital Memorial": MKPinAnnotationColor.Red,
-        "Garage ramp—entry": MKPinAnnotationColor.Red,
-        "Garage ramp—exit": MKPinAnnotationColor.Red,
-        "Liberty Bell": MKPinAnnotationColor.Red,
-        "Brown Bldg. Benches": MKPinAnnotationColor.Red,
-        "Brown Bldg. Entrance": MKPinAnnotationColor.Red
-        
-    ]
+    var AnnotationsColors: [ String : MKPinAnnotationColor ] = [ String : MKPinAnnotationColor ]()
     var allAnnotations: [String : MKAnnotation] = [String : MKAnnotation]()
     // Variables for search bar
     var searchActive : Bool = false
-    var dataTwo = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
+    var dataTwo: [String] = [String]()
     var filtered:[Int] = []
     var tableViewWithOptions = UITableView()
     var itemsInTableSearch = [String]()
+    var backend = Backend()
     var previouslySelectedPin = ""
-    let data = [
-        [
-            "title": "Gervais side, bottom left",
-            "locationName": "Gervais side, bottom left",
-            "discipline": "",
-            "latitude": 34.000713,
-            "longitude": -81.033153
-        ],
-        [
-            "title": "Gervais side, upper left",
-            "locationName": "Gervais side, upper left",
-            "discipline": "",
-            "latitude": 34.000578,
-            "longitude": -81.033098
-        ], // 34.000578, -81.033098
-        [
-            "title": "Gervais side, bottom right",
-            "locationName": "Gervais side, bottom right",
-            "discipline": "",
-            "latitude": 34.000639,
-            "longitude": -81.033403
-        ], // 34.000639, -81.033403
-        [
-            "title": "Gervais side, upper left",
-            "locationName": "Gervais side, bottom left",
-            "discipline": "",
-            "latitude": 34.000507,
-            "longitude": -81.033333
-        ], // 34.000507, -81.033333
-        [
-            "title": "Confederate Statue",
-            "locationName": "Confederate Statue",
-            "discipline": "",
-            "latitude": 34.001058,
-            "longitude": -81.033443
-        ], // 34.001058, -81.033443
-        [
-            "title": "Pendleton side, upper right",
-            "locationName": "Pendleton side, upper right",
-            "discipline": "",
-            "latitude": 34.000138,
-            "longitude": -81.032923
-        ], // 34.000138, -81.032923
-        [
-            "title": "Pendleton side, upper left",
-            "locationName": "Pendleton side, upper left",
-            "discipline": "",
-            "latitude": 34.000074,
-            "longitude": -81.033130
-        ], // 34.000074, -81.033130
-        [
-            "title": "Pendleton side, bottom left",
-            "locationName": "Pendleton side, bottom left",
-            "discipline": "",
-            "latitude": 33.999945,
-            "longitude": -81.033048
-        ], // 33.999945, -81.033048
-        [
-            "title": "Pendleton side, bottom right",
-            "locationName": "Pendleton side, bottom right",
-            "discipline": "",
-            "latitude": 33.999994,
-            "longitude": -81.032868
-        ], // 33.999994, -81.032868
-        [
-            "title": "Richardson Square",
-            "locationName": "Richardson Square",
-            "discipline": "",
-            "latitude": 33.999544,
-            "longitude": -81.032778
-        ], // 33.999544, -81.032778
-        [
-            "title": "Wade Hampton Statue",
-            "locationName": "Wade Hampton Statue",
-            "discipline": "",
-            "latitude": 33.999923,
-            "longitude": -81.032303
-        ], // 33.999923, -81.032303
-        [
-            "title": "Calhoun Building",
-            "locationName": "Calhoun Building",
-            "discipline": "",
-            "latitude": 33.999794,
-            "longitude": -81.031510
-        ], // 33.999794, -81.031510
-        [
-            "title": "Thurmond Statue",
-            "locationName": "Thurmond Statue",
-            "discipline": "",
-            "latitude": 33.999292,
-            "longitude": -81.032656
-        ], // 33.999292, -81.032656
-        [
-            "title": "Capital Memorial",
-            "locationName": "Capital Memorial",
-            "discipline": "",
-            "latitude": 33.999072,
-            "longitude": -81.032568
-        ], // 33.999072, -81.032568
-        [
-            "title": "Garage ramp—entry",
-            "locationName": "Garage ramp—entry",
-            "discipline": "",
-            "latitude": 33.998631,
-            "longitude": -81.032273
-        ], // 33.998631, -81.032273
-        [
-            "title": "Garage ramp—exit",
-            "locationName": "Garage ramp—exit",
-            "discipline": "",
-            "latitude": 33.998557,
-            "longitude": -81.032448
-        ], // 33.998557, -81.032448
-        [
-            "title": "Liberty Bell",
-            "locationName": "Liberty Bell",
-            "discipline": "",
-            "latitude": 33.999154,
-            "longitude": -81.032332
-        ], // 33.999154, -81.032332
-        [
-            "title": "Brown Bldg. Benches",
-            "locationName": "Brown Bldg. Benches",
-            "discipline": "",
-            "latitude": 33.999291,
-            "longitude": -81.031844
-        ], // 33.999291, -81.031844
-        [
-            "title": "Brown Bldg. Entrance",
-            "locationName": "Brown Bldg. Entrance",
-            "discipline": "",
-            "latitude": 33.999281,
-            "longitude": -81.031335
-        ], // 33.999281, -81.031335
-        [
-            "title": "Brown Bldg. Entrance",
-            "locationName": "Brown Bldg. Entrance",
-            "discipline": "",
-            "latitude": 33.999281,
-            "longitude": -81.031335
-        ], // 33.999281, -81.031335
-    ]
+    var data:[ [ String : NSObject ] ] = [ [ String : NSObject ] ]()
     var content = UIView()
     var imageMap = UIImageView(image: UIImage(named: "map.png"))
     var map = MKMapView()
@@ -251,15 +90,6 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         // Add all 21 points to the map
         // 1
         map.delegate = self
-        for point in data {
-            let titleTemp = String(point["title"]!)
-            allAnnotations[titleTemp] = Point(title: titleTemp,
-                locationName: String(point["locationName"]!),
-                discipline: String(point["discipline"]!),
-                coordinate: CLLocationCoordinate2D(latitude: Double(point["latitude"]! as! Double), longitude: Double(point["longitude"]! as! Double)))
-            // stateHouseSteps1.
-            map.addAnnotation(allAnnotations[titleTemp]!)
-        }
         // Set up the searh bar
         search.delegate = self
         // Set up contents
@@ -272,11 +102,8 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         tableViewWithOptions.dataSource    =   self
         content.addSubview(tableViewWithOptions)
         tableViewWithOptions.frame = CGRect(x: 0, y: 65, width: w, height: 0)
-        
-        dataTwo = [String]()
-        for element in data {
-            dataTwo.append(element["title"] as! String)
-        }
+        overrideFirebaseCallbacks()
+        backend.registerListeners()
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -380,7 +207,69 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         previouslySelectedPin = titleTemp
     }
     
+    struct Objects {
     
+    var sectionName : String!
+    var sectionObjects : [(String,String)]!
+    
+    }
+    
+    struct firebaseElement {
+        var key: String!
+        var data: [String:String]!
+    }
+    
+     var firebaseData: [String: [ String : String ] ]? = nil
+    
+    func overrideFirebaseCallbacks() {
+        let announcementsType = "annotations"
+        NSLog("overriding firebase calls")
+        backend.options[announcementsType] = {
+            (snapshot: FDataSnapshot) -> Void in
+            
+            NSLog("SNAPSHOT \(snapshot)")
+            if let valueOfSnapshot = snapshot.value as! [ String : [String : String] ]? {
+                for (key, value) in valueOfSnapshot {
+                    if (self.firebaseData==nil) {
+                        self.firebaseData = ["TEST":["HELLO":"NOTHING"]]
+                    }
+                    if self.firebaseData![key] == nil {
+                        self.firebaseData![key] = value
+                    }
+                }
+            }
+            
+            var firebaseOrdered:[ [ String : NSObject] ] = [ [ String : NSObject] ]()
+            for (key, value) in self.firebaseData! {
+                if(key != "TEST"){
+                    firebaseOrdered.append(value)
+                    
+                }
+            }
+            
+            self.data = firebaseOrdered
+            
+            self.dataTwo = [String]()
+            for element in self.data {
+                self.dataTwo.append(element["title"] as! String)
+                self.AnnotationsColors[ element["title"] as! String] = MKPinAnnotationColor.Red
+            }
+            for point in self.data {
+                NSLog("sdasd\(point)")
+                let titleTemp = String(point["title"]!)
+                let latTemp: Double = Double(point["latitude"]! as! String)!
+                let longTemp = Double(point["longitude"]! as! String)!
+                self.allAnnotations[titleTemp] = Point(title: titleTemp,
+                    locationName: String(point["locationName"]!),
+                    discipline: String(point["discipline"]!),
+                    coordinate: CLLocationCoordinate2D(latitude: latTemp, longitude: longTemp )
+                )
+                // stateHouseSteps1.
+                self.map.addAnnotation(self.allAnnotations[titleTemp]!)
+            }
+        }
+    }
+
     
     // Search bar overriding of functions end
     override func didReceiveMemoryWarning() {

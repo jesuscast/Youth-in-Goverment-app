@@ -71,6 +71,7 @@ class SelectUserTypeViewController: UIViewController {
     func setDelegate(sender: UIButton) {
         defaults.setValue("delegate", forKey: "userType")
         self.navigationController?.popViewControllerAnimated(true)
+        
     }
     func setJudicial(sender: UIButton) {
         defaults.setValue("judicial", forKey: "userType")

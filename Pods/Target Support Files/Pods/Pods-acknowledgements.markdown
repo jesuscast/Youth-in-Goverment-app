@@ -52,10 +52,6 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-## OpenTok
-
-https://tokbox.com/support/tos
-
 ## PureLayout
 
 This code is distributed under the terms and conditions of the MIT license.

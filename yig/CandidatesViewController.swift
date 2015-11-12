@@ -81,6 +81,11 @@ class CandidatesViewController: UITableViewController {
         cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
         // cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].1
         cell.textLabel?.textColor = UIColor.whiteColor()
+        //
+        cell.textLabel?.font = UIFont(name: "Verdana", size: 18)
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.contentView.layer.borderWidth = 0.5
+        cell.contentView.layer.borderColor = UIColor.whiteColor().CGColor
 
         return cell
     }

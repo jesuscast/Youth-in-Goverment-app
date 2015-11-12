@@ -97,6 +97,7 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         options.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         backend.registerListeners()
         self.view.addSubview(options)
+        options.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -166,7 +167,10 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
         cell.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         cell.textLabel?.text = self.items[indexPath.row]
         cell.textLabel?.textColor = UIColor.whiteColor()
-        
+        cell.textLabel?.font = UIFont(name: "Verdana", size: 18)
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.contentView.layer.borderWidth = 0.5
+        cell.contentView.layer.borderColor = UIColor.whiteColor().CGColor
         return cell
         
     }

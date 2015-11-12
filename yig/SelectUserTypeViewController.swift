@@ -38,24 +38,25 @@ class SelectUserTypeViewController: UIViewController {
         screenHeight = screenRect.size.height
         //
         // Set up the delegate button
+        // IamDelegate.te
         IamDelegate.setTitle("Legislative branch", forState: .Normal)
-        IamDelegate.backgroundColor = UIColor.whiteColor()
+        IamDelegate.backgroundColor = UIColor(red:0.11, green:0.64, blue:0.56, alpha:1.0)
         IamDelegate.layer.cornerRadius = 10
-        IamDelegate.layer.borderColor = UIColor.blueColor().CGColor
-        IamDelegate.layer.borderWidth = 2
         IamDelegate.addTarget(self, action: "setDelegate:", forControlEvents: .TouchUpInside)
         IamDelegate.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        IamDelegate.frame = CGRect(x: screenWidth*0.20, y: screenHeight*0.70, width: screenWidth*0.60, height: screenHeight*0.10)
+        IamDelegate.titleLabel!.font = UIFont(name: "Verdana", size: 18)
+        IamDelegate.frame = CGRect(x: screenWidth*0.20, y: screenHeight*0.60, width: screenWidth*0.60, height: screenHeight*0.10)
+        IamDelegate.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.view.addSubview(IamDelegate)
         // Set up the judicial button
         IamJudicial.setTitle("Judicial branch", forState: .Normal)
-        IamJudicial.backgroundColor = UIColor.whiteColor()
+        IamJudicial.backgroundColor = UIColor(red:0.11, green:0.64, blue:0.56, alpha:1.0)
         IamJudicial.layer.cornerRadius = 10
-        IamJudicial.layer.borderColor = UIColor.blueColor().CGColor
-        IamJudicial.layer.borderWidth = 2
         IamJudicial.addTarget(self, action: "setJudicial:", forControlEvents: .TouchUpInside)
         IamJudicial.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        IamJudicial.frame = CGRect(x: screenWidth*0.20, y: screenHeight*0.20, width: screenWidth*0.60, height: screenHeight*0.10)
+        IamJudicial.frame = CGRect(x: screenWidth*0.20, y: screenHeight*0.30, width: screenWidth*0.60, height: screenHeight*0.10)
+        IamJudicial.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        IamJudicial.titleLabel!.font = UIFont(name: "Verdana", size: 18)
         self.view.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
         self.view.addSubview(IamJudicial)
     }

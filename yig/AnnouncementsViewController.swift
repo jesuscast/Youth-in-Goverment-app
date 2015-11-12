@@ -128,7 +128,7 @@ class AnnouncementsViewController: UITableViewController {
             while (needsSort == true) {
                 needsSort = false
                 for var i = 0; i < (firebaseOrdered.count - 1); i++ {
-                    let nextElementIsBigger = Double(firebaseOrdered[i]["timestamp"]!) < Double(firebaseOrdered[i+1]["timestamp"]!)
+                    let nextElementIsBigger = Double(firebaseOrdered[i]["timestamp"]!) > Double(firebaseOrdered[i+1]["timestamp"]!)
                     if (nextElementIsBigger) {
                         // Swap
                         let tempVal = firebaseOrdered[i+1]

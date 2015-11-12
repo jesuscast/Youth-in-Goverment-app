@@ -80,7 +80,7 @@ class TableResearchQuestionsViewController: UITableViewController {
             let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
             // Configure the cell...
             cell.textLabel?.text = "\(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
-            cell.backgroundColor = UIColor(red:0.25, green:0.47, blue:0.20, alpha:1.0)
+            cell.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
             cell.textLabel?.textColor = UIColor.whiteColor()
             cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
             cell.detailTextLabel?.textColor = UIColor.whiteColor()
@@ -90,7 +90,7 @@ class TableResearchQuestionsViewController: UITableViewController {
             let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: nil)
             // Configure the cell...
             cell.textLabel?.text = "\(objectArray[indexPath.section].sectionObjects[indexPath.row].1)"
-            cell.backgroundColor = UIColor(red:0.22, green:0.50, blue:0.87, alpha:1.0)
+            cell.backgroundColor = UIColor(red:0.11, green:0.64, blue:0.56, alpha:1.0)
             cell.textLabel?.textColor = UIColor.whiteColor()
             cell.detailTextLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row].0
             cell.detailTextLabel?.textColor = UIColor.whiteColor()

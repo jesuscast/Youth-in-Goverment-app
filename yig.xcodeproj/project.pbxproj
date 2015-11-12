@@ -14,6 +14,8 @@
 		FA4C71561BDB6015007AF9F4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71551BDB6015007AF9F4 /* OptionsViewController.swift */; };
 		FA4C71581BDB6B07007AF9F4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */; };
 		FA4C715A1BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */; };
+		FA585D3B1BF5090E00B6285C /* logo_yig.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA585D3A1BF5090E00B6285C /* logo_yig.jpg */; };
+		FA585D3D1BF509FD00B6285C /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = FA585D3C1BF509FD00B6285C /* launch.png */; };
 		FA7B67001BE48EDE00440B00 /* CommitteeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B66FF1BE48EDE00440B00 /* CommitteeViewController.swift */; };
 		FAA3860E1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA3860D1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift */; };
 		FAB328951BE036C6005F30F8 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB328421BE036C6005F30F8 /* bubble.png */; };
@@ -116,6 +118,8 @@
 		FA4C71551BDB6015007AF9F4 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceScheduleViewController.swift; sourceTree = "<group>"; };
+		FA585D3A1BF5090E00B6285C /* logo_yig.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo_yig.jpg; sourceTree = "<group>"; };
+		FA585D3C1BF509FD00B6285C /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		FA6A69131BD49EAC003599EB /* yig-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yig-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA7B66FF1BE48EDE00440B00 /* CommitteeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommitteeViewController.swift; sourceTree = "<group>"; };
 		FAA3860D1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableResearchQuestionsViewController.swift; sourceTree = "<group>"; };
@@ -468,6 +472,8 @@
 		FAF7C4511BD48E38002B5285 /* yig */ = {
 			isa = PBXGroup;
 			children = (
+				FA585D3C1BF509FD00B6285C /* launch.png */,
+				FA585D3A1BF5090E00B6285C /* logo_yig.jpg */,
 				FAE3D5EE1BE69D9100077825 /* splash.png */,
 				FAE3D5EC1BE69D4700077825 /* loginpicture.jpg */,
 				FAE3D5EA1BE692D100077825 /* map.png */,
@@ -590,6 +596,7 @@
 				TargetAttributes = {
 					FAF7C44E1BD48E38002B5285 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = X2CS9D7M64;
 					};
 					FAF7C4621BD48E39002B5285 = {
 						CreatedOnToolsVersion = 7.1;
@@ -626,11 +633,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA585D3B1BF5090E00B6285C /* logo_yig.jpg in Resources */,
 				FAB328A51BE036C6005F30F8 /* message_received.aiff in Resources */,
 				FAB3289B1BE036C6005F30F8 /* bubble_stroked.png in Resources */,
 				FAF7C45D1BD48E38002B5285 /* LaunchScreen.storyboard in Resources */,
 				FAB328BC1BE036C6005F30F8 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				FAE3D5EF1BE69D9100077825 /* splash.png in Resources */,
+				FA585D3D1BF509FD00B6285C /* launch.png in Resources */,
 				FAE3D5EB1BE692D100077825 /* map.png in Resources */,
 				FAB328991BE036C6005F30F8 /* bubble_min_tailless.png in Resources */,
 				FAB328951BE036C6005F30F8 /* bubble.png in Resources */,
@@ -917,12 +926,14 @@
 			baseConfigurationReference = 6AFAD4040A86B00CF726CEA4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = yig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ymca.yig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yig.prerelease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos9.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "yig/yig-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -931,12 +942,14 @@
 			baseConfigurationReference = 55E069DFC1A5AD641E569809 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = yig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ymca.yig;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yig.prerelease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos9.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "yig/yig-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

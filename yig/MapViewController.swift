@@ -104,6 +104,9 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         tableViewWithOptions.frame = CGRect(x: 0, y: 65, width: w, height: 0)
         overrideFirebaseCallbacks()
         backend.registerListeners()
+        //Looks for single or multiple taps.
+        // let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        // view.addGestureRecognizer(tap)
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -207,6 +210,7 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         map.addAnnotation(annotationTemp!)
         previouslySelectedPin = titleTemp
         tableViewWithOptions.frame.size.height = 0
+        dismissKeyboard()
     }
     
     struct Objects {
@@ -272,6 +276,11 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         }
     }
 
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     // Search bar overriding of functions end
     override func didReceiveMemoryWarning() {

@@ -48,7 +48,7 @@ class StaffQuestionsViewController:UIViewController {
         sendButton.layer.cornerRadius = 5
         sendButton.layer.borderWidth = 2.0
         sendButton.setTitle("Submit", forState: .Normal)
-        sendButton.layer.backgroundColor = UIColor(red:0.22, green:0.50, blue:0.87, alpha:1.0).CGColor
+        sendButton.layer.backgroundColor = UIColor(red:0.11, green:0.64, blue:0.56, alpha:1.0).CGColor
         sendButton.addTarget(self, action: "sendStaffQuestion:", forControlEvents: .TouchUpInside)
         self.screenContainer.addSubview(sendButton)
         // Set up the table view with the previous questions

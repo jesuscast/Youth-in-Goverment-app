@@ -51,7 +51,7 @@ class PointSelected: NSObject, MKAnnotation {
     }
 }
 
-class MapViewController:UIViewController, MKMapViewDelegate {
+class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     var AnnotationsColors = [
         "Gervais side, upper right": MKPinAnnotationColor.Green,
         "Gervais side, upper left": MKPinAnnotationColor.Green,
@@ -75,6 +75,12 @@ class MapViewController:UIViewController, MKMapViewDelegate {
         
     ]
     var allAnnotations: [String : MKAnnotation] = [String : MKAnnotation]()
+    // Variables for search bar
+    var searchActive : Bool = false
+    var dataTwo = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
+    var filtered:[Int] = []
+    var tableViewWithOptions = UITableView()
+    var itemsInTableSearch = [String]()
     let data = [
         [
             "title": "Gervais side, bottom left",
@@ -220,7 +226,7 @@ class MapViewController:UIViewController, MKMapViewDelegate {
     var content = UIView()
     var imageMap = UIImageView(image: UIImage(named: "map.png"))
     var map = MKMapView()
-    
+    var search = UISearchBar()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -229,10 +235,11 @@ class MapViewController:UIViewController, MKMapViewDelegate {
         let w = screenRect.size.width
         content.frame = CGRectMake(0, 65, w, h-65)
         content.backgroundColor = UIColor.whiteColor()
+        search.frame = CGRect(x: 0, y: 0, width: w, height: 100)
         map.frame.size.width = w
-        map.frame.size.height = h-65
+        map.frame.size.height = h-165
         map.frame.origin.x = 0
-        map.frame.origin.y = 0
+        map.frame.origin.y = 100
         map.mapType = MKMapType.Satellite
         // Set up the position of the map
         let initialLocation = CLLocation(latitude: 34.000272, longitude: -81.033063)
@@ -252,9 +259,23 @@ class MapViewController:UIViewController, MKMapViewDelegate {
             // stateHouseSteps1.
             map.addAnnotation(allAnnotations[titleTemp]!)
         }
+        // Set up the searh bar
+        search.delegate = self
         // Set up contents
+        content.addSubview(search)
         content.addSubview(map)
         self.view.addSubview(content)
+        
+        
+        tableViewWithOptions.delegate      =   self
+        tableViewWithOptions.dataSource    =   self
+        content.addSubview(tableViewWithOptions)
+        tableViewWithOptions.frame = CGRect(x: 0, y: 65, width: w, height: 0)
+        
+        dataTwo = [String]()
+        for element in data {
+            dataTwo.append(element["title"] as! String)
+        }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -281,7 +302,71 @@ class MapViewController:UIViewController, MKMapViewDelegate {
         }
         return nil
     }
+    // Search bar overriding of functions start
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true;
+    }
     
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        var organizedElements = [String]()
+        for(var i = 0; i < dataTwo.count ; i++) {
+            let text = dataTwo[i]
+            let tmp: NSString = text
+            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            if (range.location != NSNotFound) {
+                organizedElements.append(dataTwo[i])
+            }
+        }
+        if(organizedElements.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        itemsInTableSearch = organizedElements
+        tableViewWithOptions.frame.size.height = CGFloat(Float(50 * itemsInTableSearch.count))
+        tableViewWithOptions.reloadData()
+        
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell:UITableViewCell = UITableViewCell()
+        
+        if (itemsInTableSearch.count != 0) {
+            cell.textLabel?.text = itemsInTableSearch[indexPath.row]
+        }
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if(searchActive) {
+            return itemsInTableSearch.count
+        }
+        return dataTwo.count;
+        
+        
+        // return itemsInTableSearch.count
+    }
+    
+    
+    
+    
+    // Search bar overriding of functions end
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

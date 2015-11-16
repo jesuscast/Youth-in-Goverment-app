@@ -36,6 +36,9 @@ class DocketViewController: UITableViewController {
     // An array of sections
     var objectArray = [Objects]()
     
+    // Backend firebase connection
+    var backend = Backend()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,8 @@ class DocketViewController: UITableViewController {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
         self.view.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
+        overrideFirebaseCallbacks()
+        backend.registerListeners()
     }
     
     
@@ -84,6 +89,32 @@ class DocketViewController: UITableViewController {
         return objectArray[section].sectionName
     }
     
+    func overrideFirebaseCallbacks() {
+        NSLog("what the heck")
+        backend.options["listOfCommittees"] = {
+            (snapshot: FDataSnapshot) -> Void in
+            NSLog("\(snapshot.value)")
+            var namesTemp = [ String :[ (String, String) ]]()
+            if let valueOfSnapshot = snapshot.value as! [ String: [String : String] ]? {
+                namesTemp["Committees"] = [ (String, String) ]()
+                for (_, value) in valueOfSnapshot {
+                    for (_, valueTwo) in value {
+                        namesTemp["Committees"]?.append((valueTwo, valueTwo))
+                        // NSLog(valueTwo)
+                    }
+                }
+            }
+            // Set up the value of the committee
+            // variable so the table would reload.
+            NSLog("\(namesTemp)")
+            self.objectArray.removeAll()
+            for (key, value) in namesTemp {
+                // print("\(key) -> \(value)")
+                self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
+            }
+            self.names = namesTemp
+        }
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
         let vcc = CommitteeViewController()

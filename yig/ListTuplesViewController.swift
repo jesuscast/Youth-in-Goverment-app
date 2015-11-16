@@ -50,6 +50,9 @@ class ListTuplesViewController: UITableViewController {
             // print("\(key) -> \(value)")
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
+        // tryhing to set up the size of the table view
+        self.tableView.estimatedRowHeight = 200
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     // MARK: - Table view data source
@@ -79,11 +82,30 @@ class ListTuplesViewController: UITableViewController {
         cell.textLabel?.textAlignment = NSTextAlignment.Center
         cell.contentView.layer.borderWidth = 0.5
         cell.contentView.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.textLabel?.numberOfLines = 0
+        cell.detailTextLabel?.numberOfLines = 0
+        // This is terrible for performance but trying to set constrains in here.
+        cell.textLabel?.autoConstrainAttribute(.Top, toAttribute: .Top, ofView: cell.contentView)
+        cell.textLabel?.autoConstrainAttribute(.Left, toAttribute: .Left, ofView: cell.contentView)
+        cell.textLabel?.autoConstrainAttribute(.Right, toAttribute: .Right, ofView: cell.contentView)
+        cell.textLabel?.autoConstrainAttribute(.Bottom, toAttribute: .Top, ofView: cell.detailTextLabel!)
+        cell.detailTextLabel?.autoConstrainAttribute(.Bottom, toAttribute: .Bottom, ofView: cell.contentView)
+        cell.detailTextLabel?.autoConstrainAttribute(.Top, toAttribute: .Bottom, ofView: cell.textLabel!)
+        // set the width
+        cell.detailTextLabel?.autoConstrainAttribute(.Left, toAttribute: .Left, ofView: cell.contentView)
+        cell.detailTextLabel?.autoConstrainAttribute(.Right, toAttribute: .Right, ofView: cell.contentView)
         return cell
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return objectArray[section].sectionName
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
+    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

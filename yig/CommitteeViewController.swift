@@ -56,6 +56,8 @@ class CommitteeViewController: UITableViewController {
         }
         overrideFirebaseCallbacks()
         backend.registerListeners()
+        // set the size of the tableview
+        
     }
     
     
@@ -98,6 +100,9 @@ class CommitteeViewController: UITableViewController {
         let idOfSelectedBill = self.names["Bills"]![indexPath.row].1
         // Create the tuple view controller
         let vcc = ListTuplesViewController()
+        // set the automatic size of tableview
+        //vcc.t t estimatedRowHeight = 44.0
+        //vcc.rowHeight = UITableViewAutomaticDimension
         self.backend.firebaseConnection.childByAppendingPath("bills").childByAppendingPath("\(idOfSelectedBill)").observeSingleEventOfType(.Value, withBlock: {
             snapshotInternal in
             NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
@@ -114,7 +119,7 @@ class CommitteeViewController: UITableViewController {
                 // NOW filter the namesTemp and substitute for the labels I want
                 // Then after filtering it. Push the Tuple View Controller
                 //------------------------
-                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
+                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
                 for (keySelected, valueSelected) in namesTemp["Bill Information"]! {
                     var newKeyName = ""
                     switch(keySelected) {
@@ -138,18 +143,12 @@ class CommitteeViewController: UITableViewController {
                     case "school":
                         newKeyName = "School"
                         namesTempClean[5] = (newKeyName, valueSelected)
-                    case "division":
-                        newKeyName = "Division"
+                    case "rocketDocketStatus":
+                        newKeyName = "Rocket Docket Type"
                         namesTempClean[6] = (newKeyName, valueSelected)
-                    case "governorEvaluation":
-                        newKeyName = "Governor's Evaluation"
+                    case "rocketDocketStatus":
+                        newKeyName = "Rocket Docket Type"
                         namesTempClean[7] = (newKeyName, valueSelected)
-                    case "rocketDocketStatus":
-                        newKeyName = "Rocket Docket Type"
-                        namesTempClean[8] = (newKeyName, valueSelected)
-                    case "rocketDocketStatus":
-                        newKeyName = "Rocket Docket Type"
-                        namesTempClean[9] = (newKeyName, valueSelected)
                     default:
                         print("Ignore this information")
                         // eventTemp.append((keySelected,"Unknown"))

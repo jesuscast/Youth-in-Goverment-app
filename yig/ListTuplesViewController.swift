@@ -19,14 +19,7 @@ class ListTuplesViewController: UITableViewController {
     var screenHeight = CGFloat(0.0)
     
     
-    // MARK: - Properties
-    var names: [ String: [(String,String)] ] = ["Tomato": [("origin","central amerca"), ("color","red")], "apple": [("origin","europe"), ("color","red")]] {
-        didSet {
-            self.tableView.reloadData()
-            self.tableView.sizeToFit()
-            // self.tableView.frame.size.height = self.tableView.contentSize.height
-        }
-    }
+   
     // This define the structure of the view table with sections.
     struct Objects {
         
@@ -37,6 +30,20 @@ class ListTuplesViewController: UITableViewController {
     
     // An array of sections
     var objectArray = [Objects]()
+    
+    // MARK: - Properties
+    var names: [ String: [(String,String)] ] = ["Tomato": [("origin","central amerca"), ("color","red")], "apple": [("origin","europe"), ("color","red")]] {
+        didSet {
+//            self.objectArray.removeAll()
+//            for (key, value) in names {
+//                // print("\(key) -> \(value)")
+//                self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
+//            }
+            self.tableView.reloadData()
+            // self.tableView.sizeToFit()
+            self.tableView.frame.size.height = self.tableView.contentSize.height
+        }
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -53,7 +60,7 @@ class ListTuplesViewController: UITableViewController {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
         // tryhing to set up the size of the table view
-        self.tableView.estimatedRowHeight = 200
+        self.tableView.estimatedRowHeight = 300
         self.tableView.rowHeight = UITableViewAutomaticDimension
         // Checking it the following line solves the gray background problem
         self.tableView.backgroundColor = UIColor(red:0.15, green:0.67, blue:0.89, alpha:1.0)
@@ -62,6 +69,7 @@ class ListTuplesViewController: UITableViewController {
         // self.tableView.backgroundView?.backgroundColor = UIColor.redColor()
         // self.tableView.backgroundColor = UIColor.redColor()
         self.tableView.backgroundView = nil
+        // self.tableView.alwaysBounceVertical = false
     }
     
     // MARK: - Table view data source
@@ -133,7 +141,7 @@ class ListTuplesViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
+        return 300.0
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

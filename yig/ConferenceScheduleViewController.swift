@@ -96,7 +96,7 @@ class ConferenceScheduleViewController: UITableViewController {
         print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
         print("\(detailedInformation[indexPath.section][indexPath.row])")
         let vcc = ListTuplesViewController()
-        var eventTemp = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
+        var eventTemp = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
         for (keySelected, valueSelected) in detailedInformation[indexPath.section][indexPath.row] {
             var newKeyName = ""
             switch(keySelected) {

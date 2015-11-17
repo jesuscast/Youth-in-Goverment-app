@@ -20,13 +20,8 @@ class SettingsViewController: UITableViewController {
     
     var backend = Backend()
     var defaults = NSUserDefaults.standardUserDefaults()
-    var idOfSelectedBill = "-JwEDsoyuSGOIAvAeTym"
-    // MARK: - Properties
-    var names: [ String: [(String,String,String)] ] = ["Tomato": [("origin","central amerca", "a")]] {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var idOfSelectedBill = "-K3HqH0G5xJKm1k6nP3O"
+    
     // This define the structure of the view table with sections.
     struct Objects {
         
@@ -37,6 +32,18 @@ class SettingsViewController: UITableViewController {
     
     // An array of sections
     var objectArray = [Objects]()
+    
+    // MARK: - Properties
+    var names: [ String: [(String,String,String)] ] = ["Tomato": [("origin","central amerca", "a")]] {
+        didSet {
+            self.objectArray.removeAll()
+            for (key, value) in names {
+                // print("\(key) -> \(value)")
+                self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
+            }
+            self.tableView.reloadData()
+        }
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -100,7 +107,7 @@ class SettingsViewController: UITableViewController {
         // Create the tuple view controller
         self.backend.firebaseConnection.childByAppendingPath("bills").observeSingleEventOfType(.Value, withBlock: {
             snapshotInternal in
-            NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
+            // NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
             self.names.removeAll()
             self.objectArray.removeAll()
             var namesTemp = [ String : [(String , String, String)] ]()
@@ -115,10 +122,6 @@ class SettingsViewController: UITableViewController {
                     namesTemp["Delegates"]!.append((author2!, title!, id!))
                 }
                 
-                for (key, value) in namesTemp {
-                    // print("\(key) -> \(value)")
-                    self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
-                }
                 self.names = namesTemp
             }
         })

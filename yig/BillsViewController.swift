@@ -67,11 +67,16 @@ class BillsViewController: UIViewController {
         // NSLog("\(billContentRaw.split("Section [0-9]+"))")
         var namesTempClean = [(String, String)]()
         NSLog("about to access billraw  \(billContentRaw)")
-        billContent = billContentRaw.componentsSeparatedByString("Section")
+        billContent = billContentRaw.componentsSeparatedByString("<h3>Section</h3>")
         NSLog("about to access billcontent \(billContent)")
         for(var i = 0; i < billContent.count-1; i++ ) {
-            namesTempClean.append(("Section \(i+1)", billContent[i]))
+            if billContent[i] != "" {
+                namesTempClean.append(("Section", billContent[i]))
+            }
         }
+        // I just add this one so the last section
+        // is not affected
+        namesTempClean.append(("", ""))
         vcc.names = [ "Bill Content" : namesTempClean ]
         // var sections: [String] = split(fullName) {$0 == " "}
         self.navigationController?.pushViewController(vcc, animated: true)

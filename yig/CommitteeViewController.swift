@@ -117,7 +117,7 @@ class CommitteeViewController: UITableViewController {
                 // NOW filter the namesTemp and substitute for the labels I want
                 // Then after filtering it. Push the Tuple View Controller
                 //------------------------
-                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
+                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
                 for (keySelected, valueSelected) in namesTemp["Bill Information"]! {
                     var newKeyName = ""
                     switch(keySelected) {
@@ -147,6 +147,9 @@ class CommitteeViewController: UITableViewController {
                     case "rocketDocketStatus":
                         newKeyName = "Rocket Docket Type"
                         namesTempClean[7] = (newKeyName, valueSelected)
+                    case "sponsor":
+                        newKeyName = "Sponsor"
+                        namesTempClean[8] = (newKeyName, valueSelected)
                     case "billText":
                         billContentTemp = valueSelected
                     default:
@@ -176,9 +179,9 @@ class CommitteeViewController: UITableViewController {
                     self.objectArray.removeAll()
                     self.names = [ String: [(String,String)] ] ()
                     self.names["Bills"] = [(String,String)]()
-                    NSLog("\(snapshotInternal)")
+              
                     if let valueOfSnapshot = snapshotInternal.value as! [ String : [String : String] ]? {
-                        NSLog("The value of the snapshot is \(valueOfSnapshot)")
+                        // NSLog("The value of the snapshot is \(valueOfSnapshot)")
                         for (_, value) in valueOfSnapshot {
                             self.names["Bills"]!.append( (value["billTitle"]!, value["id"]!) )
                         } // end of for
@@ -189,6 +192,7 @@ class CommitteeViewController: UITableViewController {
                     }
                     NSLog("Bills loaded")
                     self.tableView.reloadData()
+                
             })
         }
     }

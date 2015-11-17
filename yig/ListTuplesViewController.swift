@@ -114,24 +114,10 @@ class ListTuplesViewController: UITableViewController {
         
 
         // THIS IS SO IMPORTANT TO GIVE THE LAST CELL A REASONABLE WIDTH
-        if let candidatesInfo = names["Candidate Information"] {
+        var sectionIdTemp =  ([String](names.keys))[0]
+        
+        if let candidatesInfo = names[sectionIdTemp] {
             if ((indexPath.row)+1 != candidatesInfo.count) {
-                // cell.detailTextLabel?.autoConstrainAttribute(.Bottom, toAttribute: .Bottom, ofView: cell.contentView)
-                cell.detailTextLabel?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10)
-            } else {
-                
-            }
-        }
-        else if let billInfo = names["Bill Information"] {
-            if ((indexPath.row)+1 != billInfo.count) {
-                // cell.detailTextLabel?.autoConstrainAttribute(.Bottom, toAttribute: .Bottom, ofView: cell.contentView)
-                cell.detailTextLabel?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10)
-            } else {
-                
-            }
-        }
-        else if let billInfo = names["Bill Content"] {
-            if ((indexPath.row)+1 != billInfo.count) {
                 // cell.detailTextLabel?.autoConstrainAttribute(.Bottom, toAttribute: .Bottom, ofView: cell.contentView)
                 cell.detailTextLabel?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10)
             } else {

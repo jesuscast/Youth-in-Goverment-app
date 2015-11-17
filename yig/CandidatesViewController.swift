@@ -12,6 +12,8 @@ import Firebase
 
 
 class CandidatesViewController: UITableViewController {
+    var goAhead = false
+    
     var screenRect = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     var screenWidth = CGFloat(0.0)
@@ -140,18 +142,21 @@ class CandidatesViewController: UITableViewController {
                         // print("\(key) -> \(value)")
                         self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
                     }
-                    self.names = temporaryDataForOffices
                 }
+                self.goAhead = true
+                self.names = temporaryDataForOffices
                 
             }
         }
     }
     // MARK: - Obtain individual candidates
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if (goAhead == true) {
         // Check which option did you select
         print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
         // Obtain the id of the selected bill
-        let idOfSelectedBill = self.names[offices[indexPath.section]]![indexPath.row].1
+        let idOfSelectedBill = self.objectArray[indexPath.section].sectionObjects[indexPath.row].1
+        // self.names[offices[indexPath.section]]![indexPath.row].1
         // Create the tuple view controller
         let vcc = ListTuplesViewController()
         self.backend.firebaseConnection.childByAppendingPath("candidates").childByAppendingPath("\(idOfSelectedBill)").observeSingleEventOfType(.Value, withBlock: {
@@ -211,6 +216,7 @@ class CandidatesViewController: UITableViewController {
                 
             }
         })
+    } // end of goAhead == true
     }
     
 }

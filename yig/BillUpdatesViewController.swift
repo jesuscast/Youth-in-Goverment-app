@@ -71,12 +71,12 @@ class BillUpdatesViewController: UIViewController {
                 var namesTemp = [ String : [(String , String)] ]()
                 namesTemp["Bill Information"] = [(String , String)]()
                 if let valueOfSnapshot = snapshotInternal.value as! [String : String]? {
-                    NSLog("The value of the snapshot is \(valueOfSnapshot)")
+                    // NSLog("The value of the snapshot is \(valueOfSnapshot)")
                     for (elememntInBillName, elementInBill) in valueOfSnapshot {
                         namesTemp["Bill Information"]?.append( (elememntInBillName, elementInBill) )
                         
                     }
-                    NSLog("NAMES BEFORE CLEANING: \(namesTemp)")
+                    // NSLog("NAMES BEFORE CLEANING: \(namesTemp)")
                     // NOW filter the namesTemp and substitute for the labels I want
                     // Then after filtering it. Push the Tuple View Controller
                     //------------------------

@@ -102,18 +102,18 @@ class CommitteeViewController: UITableViewController {
         let vcc = BillsViewController()
         self.backend.firebaseConnection.childByAppendingPath("bills").childByAppendingPath("\(idOfSelectedBill)").observeSingleEventOfType(.Value, withBlock: {
             snapshotInternal in
-            NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
+            // NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
             
             var namesTemp = [ String : [(String , String)] ]()
             var billContentTemp = ""
             namesTemp["Bill Information"] = [(String , String)]()
             if let valueOfSnapshot = snapshotInternal.value as! [String : String]? {
-                NSLog("The value of the snapshot is \(valueOfSnapshot)")
+                // NSLog("The value of the snapshot is \(valueOfSnapshot)")
                     for (elememntInBillName, elementInBill) in valueOfSnapshot {
                         namesTemp["Bill Information"]?.append( (elememntInBillName, elementInBill) )
                     
                     }
-                NSLog("NAMES BEFORE CLEANING: \(namesTemp)")
+                // NSLog("NAMES BEFORE CLEANING: \(namesTemp)")
                 // NOW filter the namesTemp and substitute for the labels I want
                 // Then after filtering it. Push the Tuple View Controller
                 //------------------------
@@ -159,7 +159,7 @@ class CommitteeViewController: UITableViewController {
                 }
                 vcc.names = [ "Bill Information" : namesTempClean ]
                 vcc.billContentRaw = billContentTemp
-                NSLog("BILL CONTENT RAW \(billContentTemp)")
+                // NSLog("BILL CONTENT RAW \(billContentTemp)")
                 print("\(self.navigationController)")
                 self.navigationController?.pushViewController(vcc, animated: true)
 

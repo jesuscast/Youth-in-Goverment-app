@@ -66,9 +66,9 @@ class BillsViewController: UIViewController {
         let vcc = ListTuplesViewController()
         // NSLog("\(billContentRaw.split("Section [0-9]+"))")
         var namesTempClean = [(String, String)]()
-        NSLog("about to access billraw  \(billContentRaw)")
+        // NSLog("about to access billraw  \(billContentRaw)")
         billContent = billContentRaw.componentsSeparatedByString("<h3>Section</h3>")
-        NSLog("about to access billcontent \(billContent)")
+        // NSLog("about to access billcontent \(billContent)")
         for(var i = 0; i < billContent.count-1; i++ ) {
             if billContent[i] != "" {
                 namesTempClean.append(("Section", billContent[i]))

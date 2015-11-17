@@ -105,6 +105,7 @@ class CommitteeViewController: UITableViewController {
             NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")
             
             var namesTemp = [ String : [(String , String)] ]()
+            var billContentTemp = ""
             namesTemp["Bill Information"] = [(String , String)]()
             if let valueOfSnapshot = snapshotInternal.value as! [String : String]? {
                 NSLog("The value of the snapshot is \(valueOfSnapshot)")
@@ -146,12 +147,16 @@ class CommitteeViewController: UITableViewController {
                     case "rocketDocketStatus":
                         newKeyName = "Rocket Docket Type"
                         namesTempClean[7] = (newKeyName, valueSelected)
+                    case "billText":
+                        billContentTemp = valueSelected
                     default:
-                        print("Ignore this information")
+                        print("\(keySelected)")
                         // eventTemp.append((keySelected,"Unknown"))
                     }
                 }
                 vcc.names = [ "Bill Information" : namesTempClean ]
+                vcc.billContentRaw = billContentTemp
+                NSLog("BILL CONTENT RAW \(billContentTemp)")
                 print("\(self.navigationController)")
                 self.navigationController?.pushViewController(vcc, animated: true)
 
@@ -161,9 +166,6 @@ class CommitteeViewController: UITableViewController {
     
     
     // MARK: - Callbacks from firebase
-//    func overrideFirebaseCallbacks() {
-//        
-//    }
     func overrideFirebaseCallbacks() {
         backend.options["bills"] = {
             (snapshot: FDataSnapshot) -> Void in

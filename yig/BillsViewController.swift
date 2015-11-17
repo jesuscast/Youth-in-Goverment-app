@@ -9,8 +9,6 @@
 import UIKit
 import Firebase
 
-
-
 class BillsViewController: UIViewController {
     var screenRect = CGRect(x: 0, y: 0, width: 0, height: 0)
     
@@ -29,6 +27,8 @@ class BillsViewController: UIViewController {
         }
     }
     
+    var billContent:[String] = [String]()
+    var billContentRaw = ""
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +60,22 @@ class BillsViewController: UIViewController {
         
     }
     
-    func viewBill(sender: UIButton) {
     
+    func viewBill(sender: UIButton) {
+        // Check which option did you select
+        let vcc = ListTuplesViewController()
+        // NSLog("\(billContentRaw.split("Section [0-9]+"))")
+        var namesTempClean = [(String, String)]()
+        NSLog("about to access billraw  \(billContentRaw)")
+        billContent = billContentRaw.componentsSeparatedByString("Section")
+        NSLog("about to access billcontent \(billContent)")
+        for(var i = 0; i < billContent.count-1; i++ ) {
+            namesTempClean.append(("Section \(i+1)", billContent[i]))
+        }
+        vcc.names = [ "Bill Content" : namesTempClean ]
+        // var sections: [String] = split(fullName) {$0 == " "}
+        self.navigationController?.pushViewController(vcc, animated: true)
     }
+    
     
 }

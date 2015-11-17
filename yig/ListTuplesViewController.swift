@@ -130,7 +130,14 @@ class ListTuplesViewController: UITableViewController {
                 
             }
         }
-
+        else if let billInfo = names["Bill Content"] {
+            if ((indexPath.row)+1 != billInfo.count) {
+                // cell.detailTextLabel?.autoConstrainAttribute(.Bottom, toAttribute: .Bottom, ofView: cell.contentView)
+                cell.detailTextLabel?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10)
+            } else {
+                
+            }
+        }
         return cell
     }
     

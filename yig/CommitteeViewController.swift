@@ -161,6 +161,9 @@ class CommitteeViewController: UITableViewController {
     
     
     // MARK: - Callbacks from firebase
+//    func overrideFirebaseCallbacks() {
+//        
+//    }
     func overrideFirebaseCallbacks() {
         backend.options["bills"] = {
             (snapshot: FDataSnapshot) -> Void in

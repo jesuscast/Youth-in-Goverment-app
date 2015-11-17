@@ -148,6 +148,7 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchActive = false;
+        dismissKeyboard()
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

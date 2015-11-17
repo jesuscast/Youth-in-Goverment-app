@@ -105,8 +105,8 @@ class MapViewController:UIViewController, MKMapViewDelegate, UISearchBarDelegate
         overrideFirebaseCallbacks()
         backend.registerListeners()
         //Looks for single or multiple taps.
-        // let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        // view.addGestureRecognizer(tap)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {

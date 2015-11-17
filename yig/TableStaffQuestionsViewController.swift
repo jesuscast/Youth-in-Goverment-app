@@ -61,6 +61,8 @@ class TableStaffQuestionsViewController: UITableViewController {
         // self.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         overrideFirebaseCallbacks()
         backend.registerListeners()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     // MARK: - Table view data source
@@ -181,4 +183,6 @@ class TableStaffQuestionsViewController: UITableViewController {
             // print("\(self.names)")
         }
     }
+    
+    
 }

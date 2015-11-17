@@ -77,6 +77,7 @@ class ResearchQuestionsViewController:UIViewController {
     }
     // Functions that writes the question to firebase
     func sendResearchQuestion(sender: UIButton) {
+        dismissKeyboard()
         let uniqueQuestionId = NSUUID().UUIDString
         let reference = backend.firebaseConnection.childByAppendingPath("researchQuestions/\(uniqueQuestionId)")
         let data = [
@@ -119,4 +120,6 @@ class ResearchQuestionsViewController:UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    //Calls this function when the tap is recognized.
+    
 }

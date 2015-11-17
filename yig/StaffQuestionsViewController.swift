@@ -77,6 +77,7 @@ class StaffQuestionsViewController:UIViewController {
     }
     // Functions that writes the question to firebase
     func sendStaffQuestion(sender: UIButton) {
+        dismissKeyboard()
         let uniqueQuestionId = NSUUID().UUIDString
         let reference = backend.firebaseConnection.childByAppendingPath("staffQuestions/\(uniqueQuestionId)")
         let data = [

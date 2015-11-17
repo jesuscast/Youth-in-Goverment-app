@@ -117,7 +117,7 @@ class CommitteeViewController: UITableViewController {
                 // NOW filter the namesTemp and substitute for the labels I want
                 // Then after filtering it. Push the Tuple View Controller
                 //------------------------
-                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
+                var namesTempClean = [("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("",""),("","")]
                 for (keySelected, valueSelected) in namesTemp["Bill Information"]! {
                     var newKeyName = ""
                     switch(keySelected) {

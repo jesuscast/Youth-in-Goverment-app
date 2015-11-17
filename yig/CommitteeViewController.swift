@@ -99,10 +99,7 @@ class CommitteeViewController: UITableViewController {
         // Obtain the id of the selected bill
         let idOfSelectedBill = self.names["Bills"]![indexPath.row].1
         // Create the tuple view controller
-        let vcc = ListTuplesViewController()
-        // set the automatic size of tableview
-        //vcc.t t estimatedRowHeight = 44.0
-        //vcc.rowHeight = UITableViewAutomaticDimension
+        let vcc = BillsViewController()
         self.backend.firebaseConnection.childByAppendingPath("bills").childByAppendingPath("\(idOfSelectedBill)").observeSingleEventOfType(.Value, withBlock: {
             snapshotInternal in
             NSLog("SNAPSHOT OF THIS LOGGGG \(snapshotInternal)")

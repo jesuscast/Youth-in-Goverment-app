@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		CC90A89AEB9043D36AF212C4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B1343A528873E4773B7B8 /* Pods.framework */; };
 		FA2430B01BEC21C30088A2FA /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2430AF1BEC21C30088A2FA /* SelectUserTypeViewController.swift */; };
-		FA25A8481BF44530009C0D15 /* ChangeToDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A8471BF4452E009C0D15 /* ChangeToDelegateViewController.swift */; };
-		FA25A84A1BF4454D009C0D15 /* ChangeToJudicialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25A8491BF4454D009C0D15 /* ChangeToJudicialViewController.swift */; };
 		FA4C71561BDB6015007AF9F4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71551BDB6015007AF9F4 /* OptionsViewController.swift */; };
 		FA4C71581BDB6B07007AF9F4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */; };
 		FA4C715A1BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */; };
@@ -89,6 +87,7 @@
 		FAF7C48F1BD48ED3002B5285 /* StaffQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C48E1BD48ED3002B5285 /* StaffQuestionsViewController.swift */; };
 		FAF7C4911BD48EDF002B5285 /* CandidatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4901BD48EDF002B5285 /* CandidatesViewController.swift */; };
 		FAF7C4931BD49D21002B5285 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C4921BD49D21002B5285 /* Backend.swift */; };
+		FAF800DE1BFA81410060C0A5 /* BillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF800DD1BFA81410060C0A5 /* BillsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,8 +112,6 @@
 		55E069DFC1A5AD641E569809 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6AFAD4040A86B00CF726CEA4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FA2430AF1BEC21C30088A2FA /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
-		FA25A8471BF4452E009C0D15 /* ChangeToDelegateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeToDelegateViewController.swift; sourceTree = "<group>"; };
-		FA25A8491BF4454D009C0D15 /* ChangeToJudicialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeToJudicialViewController.swift; sourceTree = "<group>"; };
 		FA4C71551BDB6015007AF9F4 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		FA4C71571BDB6B07007AF9F4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA4C71591BDC86A0007AF9F4 /* ConferenceScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceScheduleViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +225,7 @@
 		FAF7C48E1BD48ED3002B5285 /* StaffQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffQuestionsViewController.swift; sourceTree = "<group>"; };
 		FAF7C4901BD48EDF002B5285 /* CandidatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidatesViewController.swift; sourceTree = "<group>"; };
 		FAF7C4921BD49D21002B5285 /* Backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
+		FAF800DD1BFA81410060C0A5 /* BillsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,8 +499,7 @@
 				FA7B66FF1BE48EDE00440B00 /* CommitteeViewController.swift */,
 				FAA3860D1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift */,
 				FA2430AF1BEC21C30088A2FA /* SelectUserTypeViewController.swift */,
-				FA25A8471BF4452E009C0D15 /* ChangeToDelegateViewController.swift */,
-				FA25A8491BF4454D009C0D15 /* ChangeToJudicialViewController.swift */,
+				FAF800DD1BFA81410060C0A5 /* BillsViewController.swift */,
 			);
 			path = yig;
 			sourceTree = "<group>";
@@ -751,10 +748,10 @@
 				FAB328A81BE036C6005F30F8 /* NSString+JSQMessages.m in Sources */,
 				FAB328BD1BE036C6005F30F8 /* JSQMessagesComposerTextView.m in Sources */,
 				FAB328B11BE036C6005F30F8 /* JSQMessagesTimestampFormatter.m in Sources */,
+				FAF800DE1BFA81410060C0A5 /* BillsViewController.swift in Sources */,
 				FAF7C4891BD48EB0002B5285 /* BusScheduleViewController.swift in Sources */,
 				FAB328BF1BE036C7005F30F8 /* JSQMessagesLabel.m in Sources */,
 				FAF7C48D1BD48EC5002B5285 /* ResearchQuestionsViewController.swift in Sources */,
-				FA25A84A1BF4454D009C0D15 /* ChangeToJudicialViewController.swift in Sources */,
 				FAB328CA1BE037CE005F30F8 /* JSQSystemSoundPlayer.m in Sources */,
 				FAF7C48B1BD48EBA002B5285 /* AnnouncementsViewController.swift in Sources */,
 				FAB328BB1BE036C6005F30F8 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
@@ -767,7 +764,6 @@
 				FAA3860E1BE5880B0030B1F1 /* TableResearchQuestionsViewController.swift in Sources */,
 				FA7B67001BE48EDE00440B00 /* CommitteeViewController.swift in Sources */,
 				FAB328B31BE036C6005F30F8 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
-				FA25A8481BF44530009C0D15 /* ChangeToDelegateViewController.swift in Sources */,
 				FAB328AF1BE036C6005F30F8 /* JSQMessagesAvatarFactory.m in Sources */,
 				FAB328BE1BE036C7005F30F8 /* JSQMessagesInputToolbar.m in Sources */,
 				FAF7C4531BD48E38002B5285 /* AppDelegate.swift in Sources */,

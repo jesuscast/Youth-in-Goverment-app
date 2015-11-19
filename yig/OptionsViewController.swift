@@ -84,7 +84,7 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
             }
             else {
-                items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates",  "Change to Delegate"]
+                items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates",  "Change to Delegate", "Rounds"]
             }
         }
         else {
@@ -153,6 +153,12 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 self.activateState(.Candidates)
             case 6:
                 self.activateState(.ChangeToDelegate)
+            case 7:
+                
+                    if let url = NSURL(string: "https://yig-bill-tracker.firebaseapp.com/views/judicial/roundPairings.html") {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
+                
             default:
                 NSLog("sd")
             }
@@ -220,7 +226,7 @@ class OptionsViewController:UIViewController, UITableViewDelegate, UITableViewDa
                 self.items = ["Map", "Docket", "Bill Updates", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions", "Staff Questions", "Candidates", "Settings", "Change to Judicial"]
             }
             else {
-                self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates",  "Change to Delegate"]
+                self.items = ["Map", "Conference Schedule", "Bus Schedule", "Announcements", "Research Questions",  "Candidates",  "Change to Delegate", "Rounds"]
             }
         }
     }

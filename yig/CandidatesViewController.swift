@@ -138,10 +138,10 @@ class CandidatesViewController: UITableViewController {
                         // create a click button that is going to extract all of the information
                         // and send to the listtuplesviewcontroller
                     }
-                    for (key, value) in temporaryDataForOffices {
-                        // print("\(key) -> \(value)")
-                        self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
-                    }
+                }
+                for (key, value) in temporaryDataForOffices {
+                    // print("\(key) -> \(value)")
+                    self.objectArray.append(Objects(sectionName: key, sectionObjects: value))
                 }
                 self.goAhead = true
                 self.names = temporaryDataForOffices

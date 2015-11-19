@@ -95,7 +95,7 @@ class BusScheduleViewController: UITableViewController {
         print("You selected cell section \(indexPath.section) #\(indexPath.row)!")
         print("\(detailedInformation[indexPath.section][indexPath.row])")
         let vcc = ListTuplesViewController()
-        var eventTemp = [("",""),("",""),("",""),("",""),("",""),("","")]
+        var eventTemp = [("",""),("",""),("",""),("",""),("","")]
         for (keySelected, valueSelected) in detailedInformation[indexPath.section][indexPath.row] {
             var newKeyName = ""
             switch(keySelected) {
@@ -105,15 +105,12 @@ class BusScheduleViewController: UITableViewController {
             case "school":
                 newKeyName = "School"
                 eventTemp[1] = (newKeyName, valueSelected)
-            case "formattedArrivalTime":
-                newKeyName = "Arrival Time"
-                eventTemp[2] = (newKeyName, valueSelected)
-            case "formattedDepartureTime":
-                newKeyName = "Departure Time"
-                eventTemp[3] = (newKeyName, valueSelected)
             case "location":
                 newKeyName = "Location"
-                eventTemp[4] = (newKeyName, valueSelected)
+                eventTemp[2] = (newKeyName, valueSelected)
+            case "description":
+                newKeyName = "Description"
+                eventTemp[3] = (newKeyName, valueSelected)
             default:
                 print("Ignore this information")
                 // eventTemp.append((keySelected,"Unknown"))
